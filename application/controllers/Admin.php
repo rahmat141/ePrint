@@ -19,15 +19,18 @@ class Admin extends CI_Controller
         $data['countVendor'] = $this->Admin_model->getJmlVendor();
         $data['countBarang'] = $this->Admin_model->getJmlBarang();
 
+        $data['grafik_penjualan'] = $this->Admin_model->grafik_penjualanTahunan();
+        $data['grafik_konsumen'] = $this->Admin_model->grafik_konsumenTahunan();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('admin/index', $data);
         $this->load->view('templates/footer', $data);
     }
 
-    public function accVendor()
+    public function daftarPesanan()
     {
-        $data['title'] = 'Acc Vendor By Admin';
+        $data['title'] = 'Daftar Pesanan';
 
         $data['admindata'] = $this->Admin_model->getAdmin();
 
@@ -35,7 +38,7 @@ class Admin extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('admin/accVendor', $data);
+        $this->load->view('admin/daftarPesanan', $data);
         $this->load->view('templates/footer', $data);
     }
 
@@ -57,7 +60,7 @@ class Admin extends CI_Controller
 		</button>
 	  </div>'
             );
-            redirect('admin/accVendor');
+            redirect('admin/daftarPesanan');
         } elseif ($status == 0) {
             $status = 'pesanan ditolak';
             $data = [
@@ -74,7 +77,7 @@ class Admin extends CI_Controller
 		</button>
 	  </div>'
             );
-            redirect('admin/accVendor');
+            redirect('admin/daftarPesanan');
         } elseif ($status == 3) {
             $status = 'pesanan dikirim';
             $data = [
@@ -91,7 +94,7 @@ class Admin extends CI_Controller
 		</button>
       </div>'
             );
-            redirect('admin/accVendor');
+            redirect('admin/daftarPesanan');
         } elseif ($status == 4) {
             $status = 'pesanan selesai';
             $data = [
@@ -114,7 +117,7 @@ class Admin extends CI_Controller
 
     public function detailPesanan($id)
     {
-        $data['title'] = 'Acc Vendor By Admin';
+        $data['title'] = 'Detail Pesanan';
 
         $data['admindata'] = $this->Admin_model->getAdmin();
 
@@ -126,35 +129,35 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    public function allKonsumen()
-    {
-        $data['title'] = 'Data Konsumen';
+    // public function allKonsumen()
+    // {
+    //     $data['title'] = 'Data Konsumen';
 
-        $data['admindata'] = $this->Admin_model->getAdmin();
-        $data['konsum'] = $this->Admin_model->getAllKonsum();
+    //     $data['admindata'] = $this->Admin_model->getAdmin();
+    //     $data['konsum'] = $this->Admin_model->getAllKonsum();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('admin/dataKonsumen', $data);
-        $this->load->view('templates/footer', $data);
-    }
+    //     $this->load->view('templates/header', $data);
+    //     $this->load->view('templates/sidebar', $data);
+    //     $this->load->view('admin/dataKonsumen', $data);
+    //     $this->load->view('templates/footer', $data);
+    // }
 
-    public function allVendor()
-    {
-        $data['title'] = 'Data Vendor';
+    // public function allVendor()
+    // {
+    //     $data['title'] = 'Data Vendor';
 
-        $data['admindata'] = $this->Admin_model->getAdmin();
-        $data['vendor'] = $this->Admin_model->getAllVendor();
+    //     $data['admindata'] = $this->Admin_model->getAdmin();
+    //     $data['vendor'] = $this->Admin_model->getAllVendor();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('admin/dataVendor', $data);
-        $this->load->view('templates/footer', $data);
-    }
+    //     $this->load->view('templates/header', $data);
+    //     $this->load->view('templates/sidebar', $data);
+    //     $this->load->view('admin/dataVendor', $data);
+    //     $this->load->view('templates/footer', $data);
+    // }
 
     public function barang()
     {
-        $data['title'] = 'Dashboard Admin';
+        $data['title'] = 'Barang-Barang';
 
         $data['admindata'] = $this->Admin_model->getAdmin();
 
@@ -185,7 +188,7 @@ class Admin extends CI_Controller
 
     public function TambahBarang()
     {
-        $data['title'] = 'Data Barang';
+        $data['title'] = 'Tambah Barang';
 
         $data['admindata'] = $this->Admin_model->getAdmin();
 
@@ -213,12 +216,12 @@ class Admin extends CI_Controller
             'keterangan' => htmlspecialchars($this->input->post('keterangan')),
         ];
         $this->Admin_model->add_Barang($data);
-        redirect('admin/dataBarang/'.$refresh);
+        redirect('admin/dataBarang/' . $refresh);
     }
 
     public function editBarang($id)
     {
-        $data['title'] = 'Data Barang';
+        $data['title'] = 'Edit Barang';
 
         $data['admindata'] = $this->Admin_model->getAdmin();
 
@@ -246,19 +249,19 @@ class Admin extends CI_Controller
             'keterangan' => htmlspecialchars($this->input->post('keterangan')),
         ];
         $this->Admin_model->update_Barang($id, $data);
-        redirect('admin/dataBarang/'.$refresh);
+        redirect('admin/dataBarang/' . $refresh);
     }
 
     public function deleteBarang($id)
     {
         $refresh = $this->input->post('refresh');
         $this->Admin_model->delete_barang($id);
-        redirect('admin/dataBarang/'.$refresh);
+        redirect('admin/dataBarang/' . $refresh);
     }
 
     public function tambahKategori()
     {
-        $data['title'] = 'Dashboard Admin';
+        $data['title'] = 'Tambah Kategori Barang';
 
         $data['admindata'] = $this->Admin_model->getAdmin();
 
@@ -304,7 +307,7 @@ class Admin extends CI_Controller
 
     public function HistoriPesanan()
     {
-        $data['title'] = 'Histori Pesanan';
+        $data['title'] = 'Riwayat Pesanan';
 
         $data['admindata'] = $this->Admin_model->getAdmin();
         $data['pesanan'] = $this->Admin_model->getAllPesanan();
@@ -313,5 +316,149 @@ class Admin extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('admin/historiPesanan', $data);
         $this->load->view('templates/footer', $data);
+    }
+
+    public function postingan()
+    {
+        $data['title'] = 'Postingan';
+
+        $data['admindata'] = $this->Admin_model->getAdmin();
+        $data['postingan'] = $this->Admin_model->allPostingan();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('admin/postingan', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function tambahPostingan()
+    {
+        $data['title'] = 'Tambah Postingan';
+
+        $data['admindata'] = $this->Admin_model->getAdmin();
+        $data['postingan'] = $this->Admin_model->allPostingan();
+        $data['namaKategori'] = $this->Admin_model->getAllkategori();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('admin/tambahPostingan', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function addPostingan()
+    {
+        $data = [
+            'id_kategori' => $this->input->post('kategori'),
+            'jenis' => htmlspecialchars($this->input->post('jenis')),
+            'caption' => htmlspecialchars($this->input->post('caption')),
+            'gambar' => $this->_uploadFile(),
+        ];
+        $this->Admin_model->add_Postingan($data);
+        redirect('admin/postingan/');
+    }
+
+    public function ubahPostingan($id)
+    {
+        $data['title'] = 'Postingan';
+
+        $data['admindata'] = $this->Admin_model->getAdmin();
+        $data['postingan'] = $this->Admin_model->detailPostingan($id);
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('admin/editPostingan', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function updatePostingan()
+    {
+        $id = $this->input->post('idposting');
+
+        $data = [
+            'id_kategori' => $this->input->post('kategori'),
+            'jenis' => htmlspecialchars($this->input->post('jenis')),
+            'caption' => htmlspecialchars($this->input->post('caption')),
+            'id_kategori' => htmlspecialchars($this->input->post('idkategori')),
+            'gambar' => $this->_uploadFile(),
+        ];
+        $this->Admin_model->update_postingan($id, $data);
+        redirect('admin/postingan/');
+    }
+
+    public function uploadGambarLain()
+    {
+        $id = $this->input->post('idposting');
+        $data = [
+            'gambar2' => $this->_uploadFile(),
+        ];
+        $this->Admin_model->upload_GambarLain($id, $data);
+        redirect('admin/postingan/');
+    }
+
+    private function _uploadFile()
+    {
+        
+
+        $namaFiles = $_FILES['gambar']['name'];
+        $ukuranFile = $_FILES['gambar']['size'];
+        $type = $_FILES['gambar']['type'];
+        $eror = $_FILES['gambar']['error'];
+
+        // $nama_file = str_replace(" ", "_", $namaFiles);
+        $tmpName = $_FILES['gambar']['tmp_name'];
+
+        // $nama_folder = "assets_user/file_upload/";
+        // $file_baru = $nama_folder . basename($nama_file);
+
+        // if ((($type == "video/mp4") || ($type == "video/3gpp")) && ($ukuranFile < 8000000)) {
+
+        //   move_uploaded_file($tmpName, $file_baru);
+        //   return $file_baru;
+        // }
+
+        if ($eror === 4) {
+            $this->session->set_flashdata(
+                'mm',
+                '<div class="alert alert-danger alert-dismissible show" role="alert">
+      Chose an image or video first!
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>'
+            );
+
+            redirect('admin/postingan/');
+
+            return false;
+        }
+
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+        $ekstensiGambar = explode('.', $namaFiles);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+            $this->session->set_flashdata(
+                'mm',
+                '<div class="alert alert-danger alert-dismissible show" role="alert">
+      Your uploaded file is not image/video
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>'
+            );
+
+            redirect('admin/postingan/');
+            return false;
+        }
+
+        $namaFilesBaru = uniqid();
+        $namaFilesBaru .= '.';
+        $namaFilesBaru .= $ekstensiGambar;
+
+        move_uploaded_file(
+            $tmpName,
+            'assetsKonsumen/images/product/' . $namaFilesBaru
+        );
+
+        return $namaFilesBaru;
     }
 }

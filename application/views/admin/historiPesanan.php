@@ -23,69 +23,79 @@
             'pesan'
         ) ?></div>
 
-        <div class="container-fluid ml-3">
+        <div class="container-fluid">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Riwayat Pemesanan</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="dataTables_wrapper dt-bootstrap4" id="dataTable_wrapper">
+                            <div class="row">
+                                <div class="col-sm-12"></div>
+                                    <table id="example" class="table table-bordered dataTable" style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Pelanggan</th>
+                                                <th>Jenis Kategori</th>
+                                                <th>Jumlah Barang</th>
+                                                <th>Total Harga</th>
+                                                <th>Status Pesanan</th>
+                                                <th>Action</th>
 
-            <table id="example" class="ui celled table" style="width:100%;">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Pelanggan</th>
-                        <th>Jenis Kategori</th>
-                        <th>Jumlah Barang</th>
-                        <th>Total Harga</th>
-                        <th>Status Pesanan</th>
-                        <th>Action</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $no = 1;
-                    foreach ($pesanan as $a):
-                        if ($a['status_pesanan'] == "pesanan selesai") {
-                        $hasil_rupiah =
-                            'Rp ' .
-                            number_format($a['total_harga'], 2, ',', '.'); ?>
-                    <tr>
-                        <td><?= $no++ ?></td>
-                        <td><?= $a['username'] ?></td>
-                        <td><?= $a['nama_kategori'] ?> </td>
-                        <td><?= $a['jumlah_barang'] ?> </td>
-                        <td><?= $hasil_rupiah ?> </td>
-                        <td><?= $a['status_pesanan'] ?> </td>
-                        <td>
-                            <center>
-                                <a href="<?= base_url('admin/detailPesanan/') .
-                                    $a['id_pesanan'] ?>" class="btn btn-info">Rincian Pesanan</a>
-                            </center>
-                        </td>
-
-
-                    </tr>
-                    
-                    <?php
-                    }
-                    endforeach;
-                    ?>
-                </tbody>
-                <tfoot>
-                    <tr>
-
-                        <th>No</th>
-                        <th>Nama Pelanggan</th>
-                        <th>Jenis Kategori</th>
-                        <th>Jumlah Barang</th>
-                        <th>Total Harga</th>
-                        <th>Status Pesanan</th>
-                        <th>Action</th>
-
-                    </tr>
-                </tfoot>
-            </table>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $no = 1;
+                                            foreach ($pesanan as $a):
+                                                if ($a['status_pesanan'] == "pesanan selesai" || $a['status_pesanan'] == 'dibatalkan') {
+                                                $hasil_rupiah =
+                                                    'Rp ' .
+                                                    number_format($a['total_bayar'], 2, ',', '.'); ?>
+                                            <tr>
+                                                <td><?= $no++ ?></td>
+                                                <td><?= $a['username'] ?></td>
+                                                <td><?= $a['nama_kategori'] ?> </td>
+                                                <td><?= $a['jmlBarang'] ?> </td>
+                                                <td><?= $hasil_rupiah ?> </td>
+                                                <td><?= $a['status_pesanan'] ?> </td>
+                                                <td>
+                                                    <center>
+                                                        <a href="<?= base_url('admin/detailPesanan/') .
+                                                            $a['id_pesanan'] ?>" class="btn btn-info">Rincian Pesanan</a>
+                                                    </center>
+                                                </td>
 
 
+                                            </tr>
+                                            
+                                            <?php
+                                            }
+                                            endforeach;
+                                            ?>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
 
+                                                <th>No</th>
+                                                <th>Nama Pelanggan</th>
+                                                <th>Jenis Kategori</th>
+                                                <th>Jumlah Barang</th>
+                                                <th>Total Harga</th>
+                                                <th>Status Pesanan</th>
+                                                <th>Action</th>
 
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 

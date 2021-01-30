@@ -21,6 +21,7 @@
                                         <th scope="col">Total harga</th>
                                         <th scope="col">Status Pesanan</th>
                                         <th scope="col">Action</th>
+                                </thead>
                                 <tbody>
                                     <?php
                                     $no = 1;

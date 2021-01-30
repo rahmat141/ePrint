@@ -11,6 +11,20 @@ class Konsumen extends CI_Controller
         parent::__construct();
         $this->load->model('Konsumen_model');
         $this->load->library('form_validation');
+
+        $id_user = $this->session->userdata('id_user');
+        if (!$id_user) {
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			   Login terlebih dahulu! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>'
+            );
+            redirect('auth');
+        }
     }
 
     public function sessionLogin()
@@ -353,9 +367,10 @@ class Konsumen extends CI_Controller
             $id_user
         );
         //------------------
-        $pesanan['allPesanan'] = $this->Konsumen_model->getAllPesananbyId(
+        $pesanan['allPesanan'] = $this->Konsumen_model->history_pesanan(
             $id_user
         );
+
         $this->load->view('templatesKonsumen/header', $data);
         $this->load->view('konsumen/historyPemesanan', $pesanan);
         $this->load->view('templatesKonsumen/footer');
@@ -1043,5 +1058,9 @@ class Konsumen extends CI_Controller
 
 
 
+    }
+
+    public function print_invoice(){
+        $this->load->view('konsumen/print_invoice');
     }
 }

@@ -162,4 +162,71 @@ class Admin_model extends CI_model
 			)"
         );
     }
+
+    public function grafik_penjualanTahunan()
+	{
+
+		// SELECT sum(jumlah_barang) jml_barang, from_unixtime(tanggal_bayar, '%Y/%m') tgl from pemesanan join pembayaran on pemesanan.id_bayar=pembayaran.id_bayar GROUP by from_unixtime(tanggal_bayar, '%Y/%m')
+
+		$this->db->select('sum(jumlah_barang) jml_barang');
+		$this->db->from('pemesanan');
+		$this->db->join('pembayaran','pemesanan.id_bayar=pembayaran.id_bayar');
+		$this->db->where("from_unixtime(tanggal_bayar, '%Y') =", date('Y'));
+		$this->db->where("status_pesanan LIKE", '%selesai%');
+		$this->db->group_by("from_unixtime(tanggal_bayar, '%Y/%m')");
+
+		return $this->db->get()->result();
+		
+		
+	}
+
+	public function grafik_konsumenTahunan()
+	{
+
+		// SELECT sum(jumlah_barang) jml_barang, from_unixtime(tanggal_bayar, '%Y/%m') tgl from pemesanan join pembayaran on pemesanan.id_bayar=pembayaran.id_bayar GROUP by from_unixtime(tanggal_bayar, '%Y/%m')
+
+		$this->db->select('count(id_user) jml_konsumen');
+		$this->db->from('user');
+		$this->db->where("status =", 1);
+		$this->db->where("substr(created_at, 7,4) =", date('Y'));
+		$this->db->group_by("substr(created_at, 4, 7)");
+
+		return $this->db->get()->result();
+		
+		
+    }
+
+    public function allPostingan()
+    {
+        $this->db->select('*');
+        $this->db->from('postingan');
+        $this->db->join('kategori', 'postingan.id_kategori=kategori.id_kategori');
+        return $this->db->get()->result_array();
+    }
+    
+    public function add_Postingan($data)
+    {
+        $this->db->insert('postingan', $data);
+    }
+
+    public function detailPostingan($id)
+    {
+        $this->db->select('*');
+        $this->db->from('postingan');
+        $this->db->join('kategori', 'postingan.id_kategori=kategori.id_kategori');
+        $this->db->where('id_posting', $id);
+        return $this->db->get()->row();
+    }
+
+    public function update_postingan($id, $data)
+    {
+        $this->db->where('id_posting', $id);
+        $this->db->update('postingan', $data);
+    }
+
+    public function upload_GambarLain($id, $data)
+    {
+        $this->db->where('id_posting', $id);
+        $this->db->update('postingan', $data);
+    }
 }

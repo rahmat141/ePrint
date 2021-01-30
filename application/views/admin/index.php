@@ -54,6 +54,34 @@
 				</div>
 
 			</div>
+
+			<div class="row row-cols-1 row-cols-md-3">
+
+                <div class="col-6 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            Grafik Penjualan (Tahunan <?= date('Y', time()); ?>)
+                        </div>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+
+
+                <div class="col-6 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            Grafik Konsumen (Tahunan <?= date('Y', time()); ?>)
+                        </div>
+                        <canvas id="chartKonsumen"></canvas>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
 		</div>
 
 

@@ -53,34 +53,127 @@
 </body>
 
 <script type="text/javascript">
-    $(document).on("click", "#lihatUkuran", function() {
-        var s = $(this).data('s');
-        var m = $(this).data('m');
-        var l = $(this).data('l');
-        var xl = $(this).data('xl');
-        var xxl = $(this).data('xxl');
-        var xxxl = $(this).data('xxxl');
-       
-
-        $("#modal_view #table #s").html(s);
-        $("#modal_view #table #m").html(m);
-        $("#modal_view #table #l").html(l);
-        $("#modal_view #table #xl").html(xl);
-        $("#modal_view #table #xxl").html(xxl);
-        $("#modal_view #table #3xl").html(xxxl);
+  $(document).on("click", "#lihatUkuran", function() {
+    var s = $(this).data('s');
+    var m = $(this).data('m');
+    var l = $(this).data('l');
+    var xl = $(this).data('xl');
+    var xxl = $(this).data('xxl');
+    var xxxl = $(this).data('xxxl');
 
 
-    });
+    $("#modal_view #table #s").html(s);
+    $("#modal_view #table #m").html(m);
+    $("#modal_view #table #l").html(l);
+    $("#modal_view #table #xl").html(xl);
+    $("#modal_view #table #xxl").html(xxl);
+    $("#modal_view #table #3xl").html(xxxl);
+
+
+  });
 </script>
 
 <script type="text/javascript">
-    $(document).on("click", "#lihatBukti", function() {
-        var gambar = $(this).data('foto');
+  $(document).on("click", "#lihatBukti", function() {
+    var gambar = $(this).data('foto');
 
-        $("#modal_view #image_bayar").attr('src', '<?= base_url('assets/foto/bukti_bayar/') ?>' + gambar);
+    $("#modal_view #image_bayar").attr('src', '<?= base_url('assets/foto/bukti_bayar/') ?>' + gambar);
 
 
-    });
+  });
 </script>
+
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [
+        <?php for ($a = 1; $a <= 12; $a++) : ?> 'Bulan <?= $a; ?>',
+        <?php endfor; ?>
+      ],
+      datasets: [{
+        label: 'Barang Terjual',
+        data: [
+          <?php foreach ($grafik_penjualan as $item) : ?>
+            <?= $item->jml_barang ?>,
+          <?php endforeach; ?>
+        ],
+        backgroundColor: [
+
+          <?php for ($a = 1; $a <= 12; $a++) : ?> 'rgba(54, 162, 235, 0.2)', <?php endfor; ?>
+
+        ],
+        borderColor: [
+          <?php for ($a = 1; $a <= 12; $a++) : ?> 'rgba(54, 162, 235, 1)', <?php endfor; ?>
+
+        ],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+</script>
+
+
+<script>
+  var ctx = document.getElementById('chartKonsumen').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [
+        <?php for ($a = 1; $a <= 12; $a++) : ?> 'Bulan <?= $a; ?>',
+        <?php endfor; ?>
+      ],
+      datasets: [{
+        label: 'Jumlah Konsumen',
+        data: [
+          <?php foreach ($grafik_konsumen as $item) : ?>
+            <?= $item->jml_konsumen ?>,
+          <?php endforeach; ?>
+        ],
+        backgroundColor: [
+
+          <?php for ($a = 1; $a <= 12; $a++) : ?> 'rgba(153, 102, 255, 0.2)', <?php endfor; ?>
+
+        ],
+        borderColor: [
+          <?php for ($a = 1; $a <= 12; $a++) : ?> 'rgba(153, 102, 255, 1)', <?php endfor; ?>
+
+        ],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+</script>
+
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+
 
 </html>

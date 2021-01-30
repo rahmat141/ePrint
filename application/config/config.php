@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://fe19417fc8d9.ngrok.io/eprint/';
+$config['base_url'] = 'http://365aea9841b4.ngrok.io/eprint/';
 
 /*
 |--------------------------------------------------------------------------

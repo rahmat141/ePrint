@@ -96,24 +96,10 @@
                     <i class="fas fa-fw fa-file-invoice"></i>
                     <span>Histori Pesanan</span></a>
             </li>
-
-
             <hr class="sidebar-divider">
+            
 
             <!-- Heading -->
-
-
-
-
-
-
             <!-- Divider -->
-
-
             <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
-        <!-- End of Sidebar -->
+            
