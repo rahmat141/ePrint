@@ -270,4 +270,27 @@ class Konsumen_model extends CI_model
 
         return $this->db->query($query)->result_array();
     }
+
+    public function getDetailPembayaran($id_bayar)
+    {
+
+        // $query = "SELECT * from pembayaran where id_bayar = $id_bayar";
+
+        $this->db->select("*");
+        $this->db->from("pembayaran");
+        $this->db->where("id_bayar =", $id_bayar);
+
+        return $this->db->get()->row_array();
+    }
+
+    public function invoice_item($id_bayar)
+    {
+        $this->db->select('*');
+        $this->db->from('pemesanan p');
+        $this->db->join('kategori k', 'p.id_kategori=k.id_kategori');
+        $this->db->where('id_bayar', $id_bayar);
+        $this->db->where('status_pesanan LIKE', "%selesai%");
+
+        return $this->db->get()->result_array();
+    }
 }

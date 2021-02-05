@@ -938,7 +938,43 @@ class Konsumen extends CI_Controller
             );
         }
 
+        $this->kirimStatusPesanan($email);
+
+
         redirect('konsumen/cart');
+    }
+
+    public function kirimStatusPesanan($email)
+    {
+
+        $this->load->library('email');
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'admnartgraph@gmail.com',
+            'smtp_pass' => 'sangatrahasia121',
+            'smtp_port' => 465,
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n",
+        ];
+
+        $this->email->initialize($config);
+        $this->email->from('admnartgraph@gmail.com', 'Admin E-Print');
+        $this->email->to($email);
+
+
+        $this->email->subject('Account Verification');
+        $this->email->message(
+            'Terimakasih telah berbelanja dengan kami :)'
+        );
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die();
+        }
     }
 
     private function _uploadFile()
@@ -1053,14 +1089,19 @@ class Konsumen extends CI_Controller
 
 
         $this->load->view('templatesKonsumen/header', $data);
-        $this->load->view('konsumen/detail_pesan',$data);
+        $this->load->view('konsumen/detail_pesan', $data);
         $this->load->view('templatesKonsumen/footer');
-
-
-
     }
 
-    public function print_invoice(){
-        $this->load->view('konsumen/print_invoice');
+    public function print_invoice($id_bayar)
+    {
+
+        $data = [
+            "id_bayar" => $id_bayar,
+            "detailBayar" => $this->Konsumen_model->getDetailPembayaran($id_bayar),
+            "detailPesanan" => $this->Konsumen_model->invoice_item($id_bayar),
+        ];
+
+        $this->load->view('konsumen/print_invoice', $data);
     }
 }

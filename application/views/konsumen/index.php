@@ -92,9 +92,9 @@
                                             <a class="ps-shoe__favorite" href="#"><i class="ps-icon-heart"></i></a>
                                             <img src="<?= base_url(
                                                             'assetsKonsumen/'
-                                                        ) ?>images/product/<?= $pst->gambar ?>" alt=""><a class="ps-shoe__overlay" href="<?= base_url(
-                                                                                                                                'Konsumen/detail/'
-                                                                                                                            ) . $pst->id_posting ?>"></a>
+                                                        ) ?>images/product/<?= $pst->gambar ?>" alt="">
+                                            <a class="ps-shoe__overlay" href="<?= base_url('Konsumen/detail/') . $pst->id_posting ?>">
+                                            </a>
                                         </div>
                                         <div class="ps-shoe__content">
                                             <div class="ps-shoe__variants">

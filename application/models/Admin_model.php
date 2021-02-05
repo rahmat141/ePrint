@@ -229,4 +229,10 @@ class Admin_model extends CI_model
         $this->db->where('id_posting', $id);
         $this->db->update('postingan', $data);
     }
+
+    public function delete_postingan($id)
+    {
+        $this->db->where('id_posting', $id);
+        $this->db->delete('postingan');
+    }
 }

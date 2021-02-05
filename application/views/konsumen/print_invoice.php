@@ -112,8 +112,8 @@
                             </td>
 
                             <td>
-                                Invoice #: 123<br>
-                                Created: <?= date('d-M-Y',time()) ?><br>
+                                Invoice #: <?= $id_bayar ?><br>
+                                Created: <?= date('d-M-Y', time()) ?><br>
                                 <!-- Due: February 1, 2015 -->
                             </td>
                         </tr>
@@ -133,8 +133,8 @@
 
                             <td>
                                 Acme Corp.<br>
-                                John Doe<br>
-                                john@example.com
+                                <?= $detailBayar['nama_pemesan'] ?><br>
+                                <?= $detailBayar['email'] ?>
                             </td>
                         </tr>
                     </table>
@@ -147,7 +147,7 @@
                 </td>
 
                 <td>
-                    Check #
+                    Status #
                 </td>
             </tr>
 
@@ -157,7 +157,7 @@
                 </td>
 
                 <td>
-                    1000
+                    OK
                 </td>
             </tr>
 
@@ -171,41 +171,31 @@
                 </td>
             </tr>
 
-            <tr class="item">
-                <td>
-                    Website design
-                </td>
+            <?php foreach ($detailPesanan as $item) : ?>
+                <tr class="item">
+                    <td>
+                        <?= $item['nama_kategori'] . " " . "(" . $item['jumlah_barang'] . " barang )" ?>
+                    </td>
 
-                <td>
-                    $300.00
-                </td>
-            </tr>
+                    <td>
+                        <?php $harga =
+                        'Rp ' .
+                        number_format($item['total_harga'], 2, ',', '.'); ?>
+                        <?= $harga ?>
+                    </td>
+                </tr>
+            <?php endforeach ?>
 
-            <tr class="item">
-                <td>
-                    Hosting (3 months)
-                </td>
 
-                <td>
-                    $75.00
-                </td>
-            </tr>
-
-            <tr class="item last">
-                <td>
-                    Domain name (1 year)
-                </td>
-
-                <td>
-                    $10.00
-                </td>
-            </tr>
 
             <tr class="total">
                 <td></td>
 
                 <td>
-                    Total: $385.00
+                    <?php $hasil_rupiah =
+                        'Rp ' .
+                        number_format($detailBayar['total_bayar'], 2, ',', '.'); ?>
+                    Total: <?= $hasil_rupiah ?>
                 </td>
             </tr>
         </table>

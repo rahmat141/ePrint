@@ -395,6 +395,12 @@ class Admin extends CI_Controller
         redirect('admin/postingan/');
     }
 
+    public function hapusPostingan($id)
+    {
+        $this->Admin_model->delete_postingan($id);
+        redirect('admin/postingan/');
+    }
+
     private function _uploadFile()
     {
         
