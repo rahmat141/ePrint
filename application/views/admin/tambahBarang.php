@@ -8,6 +8,7 @@
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url(); ?>">Home</a></li>
+						<li class="breadcrumb-item active"><a href="<?php echo base_url('admin/barang'); ?>">Daftar Barang</a></li>
 						<li class="breadcrumb-item active">Tambah Barang</li>
 					</ol>
 				</div><!-- /.col -->
@@ -24,8 +25,8 @@
                     <label for="exampleInputEmail1">Kategori Barang</label>
                     <select class="form-select" name="kategori" aria-label="Default select example">
                         <option selected>-Pilih Kategori-</option>
-                        <?php $id=0; foreach ($namaKategori as $key => $value) { $id++; ?>
-                            <option value="<?= $id; ?>"><?= $value['nama_kategori'] ?></option>
+                        <?php $id=0; foreach ($namaKategori as $key => $value) { ?>
+                            <option value="<?= $value['id_kategori'] ?>"><?= $value['nama_kategori'] ?></option>
                         <?php } ?>
                     </select>
                 </div>

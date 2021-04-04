@@ -11,7 +11,7 @@
 <main class="ps-main">
     <div class="ps-checkout pt-80 pb-80">
         <div class="ps-container">
-            <form class="ps-checkout__form" action="do_action" method="post">
+            <form class="ps-checkout__form" action="<?= base_url('konsumen/editProfile') ?>" method="post">
                 <div class="row">
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
                         <div class="ps-checkout__billing">
@@ -20,7 +20,7 @@
                                 <div class="form-group form-group--inline">
                                     <label>Username<span></span>
                                     </label>
-                                    <input class="form-control" type="text" value="<?= $id['username'] ?>" disabled>
+                                    <input class="form-control" type="text" name="username" value="<?= $id['username'] ?>" disabled>
                                 </div>
                                 <div class="form-group form-group--inline">
                                     <label>Email<span></span>
@@ -32,26 +32,31 @@
                                     </p>
                                     <div class="collapse" id="collapseExample">
                                         <div class="card card-body">
-                                            <input class="form-control" type="email" value="<?= $id['email'] ?>">
+                                            <input class="form-control" type="email" name="email" value="<?= $id['email'] ?>">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group form-group--inline">
                                     <label>Alamat<span></span>
                                     </label>
-                                    <input class="form-control" type="text" value="<?= $id['alamat'] ?>">
+                                    <input class="form-control" type="text" name="alamat" value="<?= $id['alamat'] ?>">
                                 </div>
                                 <div class="form-group form-group--inline">
                                     <label>Status<span></span>
                                     </label>
-                                    <input class="form-control" type="text" value="<?= $id['jenis_pengguna'] ?>">
+                                    <select class="form-select" name="status" aria-label="Default select example">
+                                    <?php foreach ($status as $key => $value) { ?>
+                                        <option <?php if($value->role_id == $id['role_id']){ ?> selected <?php } ?> value="<?= $value->role_id ?>"><?= $value->jenis_pengguna ?></option>
+                                    <?php } ?>
+                                    </select>
+                                    <!-- <input class="form-control" type="text" name="status" value="<?= $id['jenis_pengguna'] ?>"> -->
                                 </div>
                                 <div class="form-group form-group--inline">
                                     <label>Bergabung pada<span></span>
                                     </label>
                                     <input class="form-control" type="text" value="<?= $id['created_at'] ?>" disabled>
                                 </div>
-
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             <?php endforeach; ?>
                         </div>
                     </div>

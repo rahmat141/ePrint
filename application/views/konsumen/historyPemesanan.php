@@ -64,7 +64,9 @@
 											<td><?= $hasil_rupiah ?></td>
 											<td><?= $pesanan['status_pesanan'] ?></td>
 											<td>
-												<a href="" class="btn btn-info">Rincian</a>
+												<a class="btn btn-primary" href="<?= base_url('konsumen/det_pesanan/' . $pesanan['id_bayar']) ?>">
+                                                    Detail
+                                                </a>
 												<?php if (strpos($pesanan['status_pesanan'], 'dibatalkan') === FALSE) : ?>
 													<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
 														Beri Penilaiian

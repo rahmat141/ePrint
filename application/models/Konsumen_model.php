@@ -1,6 +1,14 @@
 <?php
 class Konsumen_model extends CI_model
 {
+
+    public function getStatususer()
+    {
+        $this->db->select('*');
+        $this->db->from('role');
+        $this->db->where('role_id <>', 5);
+        return $this->db->get()->result();
+    }
     public function getNilai()
     {
         $this->db->select('*');
@@ -150,16 +158,12 @@ class Konsumen_model extends CI_model
     //     $this->db->update('pemesanan');
     // }
 
-    // public function editProfile($data, $data2)
-    // {
-    //     $this->db->set($data);
-    //     $this->db->where('username', $this->session->userdata('username'));
-    //     $this->db->update('konsumen');
-
-    //     $this->db->set($data2);
-    //     $this->db->where('username', $this->session->userdata('username'));
-    //     $this->db->update('user');
-    // }
+    public function editProfile($data)
+    {
+        $this->db->set($data);
+        $this->db->where('username', $this->session->userdata('username'));
+        $this->db->update('user');
+    }
 
     // public function tampilBarang()
     // {

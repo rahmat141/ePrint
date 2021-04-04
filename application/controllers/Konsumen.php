@@ -17,7 +17,7 @@ class Konsumen extends CI_Controller
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-			   Login terlebih dahulu! 
+			        Login terlebih dahulu! 
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				  <span aria-hidden="true">&times;</span>
 				</button>
@@ -274,7 +274,7 @@ class Konsumen extends CI_Controller
                 }
 
                 $data = [
-                    'id_barang' => htmlspecialchars($id_barang),
+                    // 'id_barang' => htmlspecialchars($id_barang),
                     'id_kategori' => htmlspecialchars($id_kategori),
                     'ukuran_s' => htmlspecialchars($ukuranS),
                     'ukuran_m' => htmlspecialchars($ukuranM),
@@ -431,6 +431,7 @@ class Konsumen extends CI_Controller
         $data['jumlah_keranjang'] = $this->Konsumen_model->getCountKeranjang(
             $id_user
         );
+        $data['status'] = $this->Konsumen_model->getStatususer();
 
         $data['barang_keranjang'] = $this->Konsumen_model->getIsiKeranjang(
             $id_user
@@ -540,97 +541,71 @@ class Konsumen extends CI_Controller
     public function editProfile()
     {
         $this->form_validation->set_rules('email', 'Email', 'trim|valid_email');
+        $email = htmlspecialchars($this->input->post('email', true));
+        // $username = htmlspecialchars($this->input->post('username', true));
+        $alamat = htmlspecialchars($this->input->post('alamat', true));
+        $status = htmlspecialchars($this->input->post('status', true));
+        $data = [
+            'email' => $email,
+            'alamat' => $alamat,
+            'role_id' => $status,
+            'status' => $status,
+        ];
+        $this->Konsumen_model->editProfile($data);
+        redirect('konsumen/profile/' . $this->session->userdata('id_user'));
+        // $username = $this->session->userdata('username');
 
-        if ($this->form_validation->run() == false) {
-            $this->editProfile();
-        } else {
-            $name = htmlspecialchars($this->input->post('name', true));
-            $email = htmlspecialchars($this->input->post('email', true));
-            $birtdate = htmlspecialchars(
-                $this->input->post('tanggallahir', true)
-            );
-            $gender = htmlspecialchars(
-                $this->input->post('jenis_kelamin', true)
-            );
-            $city = htmlspecialchars($this->input->post('alamat', true));
-            $username = htmlspecialchars($this->input->post('username', true));
+        // $datas = $this->db->query("SELECT * FROM user join konsumen using(username) where username ='$username'")->result();
+        // foreach ($datas as $d) {
+        //     if ($d->email == $email) {
+        //         $this->session->set_flashdata(
+        //             'message',
+        //             '<div class="alert alert-success alert-dismissible" role="alert">
+        //                 <strong>Congratulastions!</strong> your profile is updated!
+        //                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        //                 <span aria-hidden="true">&times;</span>
+        //                 </button>
+        //             </div>'
+        //         );
+        //         $this->Konsumen_model->editProfile($data);
+        //         redirect('konsumen');
+        //     } else {
+        //         $cekdulu = $this->db->query(
+        //             "select * from user where email ='$email'"
+        //         );
+        //         if ($cekdulu->num_rows() > 0) {
+        //             $this->session->set_flashdata(
+        //                 'message',
+        //                 '<div class="alert alert-danger alert-dismissible" role="alert">
+        //                     <strong>Sorry :( </strong>' .
+        //                                     $email .
+        //                                     ' email already used!
+        //                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        //                     <span aria-hidden="true">&times;</span>
+        //                     </button>
+        //                 </div>'
+        //             );
+        //             redirect('konsumen');
+        //         } else {
+        //             $this->session->set_flashdata(
+        //                 'message',
+        //                 '<div class="alert alert-success alert-dismissible" role="alert">
+        //                 <strong>Congratulastions </strong> your profile is updated <br> Please login again!
+        //                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        //                   <span aria-hidden="true">&times;</span>
+        //                 </button>
+        //               </div>'
+        //             );
 
-            $data = [
-                'nama_lengkap_konsumen' => $name,
-                'tanggal_lahir' => $birtdate,
-                'jenis_kelamin' => $gender,
-                'alamat' => $city,
-                'username' => $username,
-            ];
+        //             $this->Konsumen_model->editProfile($data);
+        //             $this->session->unset_userdata('email');
+        //             $this->session->unset_userdata('role_id');
+        //             $this->session->unset_userdata('id');
 
-            $data2 = [
-                'email' => $email,
-                'username' => $username,
-            ];
-
-            $username = $this->session->userdata('username');
-
-            $datas = $this->db
-                ->query(
-                    "SELECT * FROM user join konsumen using(username) where username ='$username'"
-                )
-                ->result();
-
-            foreach ($datas as $d) {
-                if ($d->email == $email) {
-                    $this->session->set_flashdata(
-                        'message',
-                        '<div class="alert alert-success alert-dismissible" role="alert">
-            <strong>Congratulastions!</strong> your profile is updated!
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>'
-                    );
-
-                    $this->Konsumen_model->editProfile($data, $data2);
-
-                    redirect('konsumen/Profile');
-                } else {
-                    $cekdulu = $this->db->query(
-                        "select * from user where email ='$email'"
-                    );
-
-                    if ($cekdulu->num_rows() > 0) {
-                        $this->session->set_flashdata(
-                            'message',
-                            '<div class="alert alert-danger alert-dismissible" role="alert">
-            <strong>Sorry :( </strong>' .
-                                $email .
-                                ' email already used!
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>'
-                        );
-                        redirect('konsumen/Profile');
-                    } else {
-                        $this->session->set_flashdata(
-                            'message',
-                            '<div class="alert alert-success alert-dismissible" role="alert">
-                        <strong>Congratulastions </strong> your profile is updated <br> Please login again!
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>'
-                        );
-
-                        $this->Konsumen_model->editProfile($data, $data2);
-
-                        $this->session->unset_userdata('email');
-                        $this->session->unset_userdata('role_id');
-                        $this->session->unset_userdata('id');
-
-                        redirect('auth');
-                    }
-                }
-            }
-        }
+        //             redirect('auth');
+        //         }
+        //     }
+        // }
 
         // $this->Profile_model->editBasicModel($data);
     }
