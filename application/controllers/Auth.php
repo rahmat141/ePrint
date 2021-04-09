@@ -226,23 +226,23 @@ class Auth extends CI_Controller
             $this->email->subject('Account Verification');
             $this->email->message(
                 'click this link to verify your account : <a href="' .
-                    base_url() .
-                    'auth/verify?email=' .
-                    $this->input->post('email') .
-                    '&token=' .
-                    urlencode($token) .
-                    '">Activate</a>'
+                base_url() .
+                'auth/verify?email=' .
+                $this->input->post('email') .
+                '&token=' .
+                urlencode($token) .
+                '">Activate</a>'
             );
         } elseif ($type == 'forgot') {
             $this->email->subject('Reset Password');
             $this->email->message(
                 'click this link to reset your password : <a href="' .
-                    base_url() .
-                    'auth/resetpassword?email=' .
-                    $this->input->post('email') .
-                    '&token=' .
-                    urlencode($token) .
-                    '">Reset Password</a>'
+                base_url() .
+                'auth/resetpassword?email=' .
+                $this->input->post('email') .
+                '&token=' .
+                urlencode($token) .
+                '">Reset Password</a>'
             );
         }
 
@@ -282,8 +282,8 @@ class Auth extends CI_Controller
                         'pesan',
                         '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Congratulation</strong> ' .
-                            $email .
-                            ' has been activated. Please Login!
+                        $email .
+                        ' has been activated. Please Login!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

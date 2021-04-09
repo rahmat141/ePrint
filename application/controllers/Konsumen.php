@@ -13,18 +13,18 @@ class Konsumen extends CI_Controller
         $this->load->library('form_validation');
 
         $id_user = $this->session->userdata('id_user');
-        if (!$id_user) {
-            $this->session->set_flashdata(
-                'pesan',
-                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-			        Login terlebih dahulu! 
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				  <span aria-hidden="true">&times;</span>
-				</button>
-			  </div>'
-            );
-            redirect('auth');
-        }
+        // if (!$id_user) {
+        //     $this->session->set_flashdata(
+        //         'pesan',
+        //         '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        //             Login terlebih dahulu!
+        //         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        //           <span aria-hidden="true">&times;</span>
+        //         </button>
+        //       </div>'
+        //     );
+        //     redirect('auth');
+        // }
     }
 
     public function sessionLogin()
@@ -144,7 +144,7 @@ class Konsumen extends CI_Controller
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-			   Login terlebih dahulu! 
+			   Login terlebih dahulu!
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				  <span aria-hidden="true">&times;</span>
 				</button>
@@ -179,7 +179,6 @@ class Konsumen extends CI_Controller
         $nama_kategori = $this->Konsumen_model->getNamaBarang($kategori);
 
         $data['nama_barang'] = $nama_kategori['nama_kategori'];
-
 
         $data['id_kategori'] = $kategori;
 
@@ -315,7 +314,7 @@ class Konsumen extends CI_Controller
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-			   Login terlebih dahulu! 
+			   Login terlebih dahulu!
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				  <span aria-hidden="true">&times;</span>
 				</button>
@@ -351,7 +350,7 @@ class Konsumen extends CI_Controller
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-			   Login terlebih dahulu! 
+			   Login terlebih dahulu!
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				  <span aria-hidden="true">&times;</span>
 				</button>
@@ -817,14 +816,14 @@ class Konsumen extends CI_Controller
 
     // public function statusPemesanan()
     // {
-    // 	$data['title'] = 'Status Pemesanan';
-    // 	$data['konsumenData'] = $this->Konsumen_model->getKonsumenData();
-    // 	$data['pesanan'] = $this->Konsumen_model->getPesanan();
+    //     $data['title'] = 'Status Pemesanan';
+    //     $data['konsumenData'] = $this->Konsumen_model->getKonsumenData();
+    //     $data['pesanan'] = $this->Konsumen_model->getPesanan();
 
-    // 	$this->load->view('templatesKonsumen/header', $data);
-    // 	$this->load->view('templatesKonsumen/sidebar', $data);
-    // 	$this->load->view('konsumen/statusPemesanan', $data);
-    // 	$this->load->view('templatesKonsumen/footer');
+    //     $this->load->view('templatesKonsumen/header', $data);
+    //     $this->load->view('templatesKonsumen/sidebar', $data);
+    //     $this->load->view('konsumen/statusPemesanan', $data);
+    //     $this->load->view('templatesKonsumen/footer');
     // }
 
     public function detailPesanan($id)
@@ -915,7 +914,6 @@ class Konsumen extends CI_Controller
 
         $this->kirimStatusPesanan($email);
 
-
         redirect('konsumen/cart');
     }
 
@@ -937,7 +935,6 @@ class Konsumen extends CI_Controller
         $this->email->initialize($config);
         $this->email->from('admnartgraph@gmail.com', 'Admin E-Print');
         $this->email->to($email);
-
 
         $this->email->subject('Account Verification');
         $this->email->message(
@@ -1042,7 +1039,7 @@ class Konsumen extends CI_Controller
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-			   Login terlebih dahulu! 
+			   Login terlebih dahulu!
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				  <span aria-hidden="true">&times;</span>
 				</button>
@@ -1061,7 +1058,6 @@ class Konsumen extends CI_Controller
         //------------------
 
         $data['detail_pesan'] = $this->Konsumen_model->getDetailPesan($id_bayar);
-
 
         $this->load->view('templatesKonsumen/header', $data);
         $this->load->view('konsumen/detail_pesan', $data);

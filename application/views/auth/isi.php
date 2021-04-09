@@ -7,13 +7,13 @@
             <div class="wrap-login100">
 
 
-                <form class="login100-form validate-form" method="post" action="<?= base_url(
-                    'auth/cekLogin'
-				) ?>">
+                <form class="login100-form validate-form" method="post" action="<?=base_url(
+    'auth/cekLogin'
+)?>">
 
-                    <a href="<?= base_url('konsumen') ?>">
+                    <a href="<?=base_url('konsumen')?>">
 
-                        <img src="<?= base_url('assets_auth/images/back-button.png') ?>" alt="" width="50">
+                        <img src="<?=base_url('assets_auth/images/back-button.png')?>" alt="" width="50">
 
                     </a>
 
@@ -23,10 +23,10 @@
                     <span class="login100-form-title p-b-43 pt-5">
 
 
-                        <?= $head ?> to continue
+                        <?=$head?> to continue
                     </span>
 
-                    <?= $this->session->flashdata('pesan') ?>
+                    <?=$this->session->flashdata('pesan')?>
 
 
 
@@ -52,9 +52,9 @@
                         </div>
 
                         <div>
-                            <a href="<?= base_url(
-                                'auth/forgot_password'
-                            ) ?>" class="txt1">
+                            <a href="<?=base_url(
+    'auth/forgot_password'
+)?>" class="txt1">
                                 Forgot Password?
                             </a>
                         </div>
@@ -76,9 +76,9 @@
                     <div class="login100-form-social flex-c-m">
 
                         <div class="container-login100-form-btn">
-                            <a href="<?= base_url(
-                                'auth/register'
-                            ) ?>" class="login100-btn">
+                            <a href="<?=base_url(
+    'auth/register'
+)?>" class="login100-btn">
                                 Register
                             </a>
 
@@ -90,9 +90,9 @@
                     </div>
                 </form>
 
-                <div class="login100-more" style="background-image: url('<?= base_url(
-                    'assets_auth/'
-                ) ?>images/spiderman.jpeg');">
+                <div class="login100-more" style="background-image: url('<?=base_url(
+    'assets_auth/'
+)?>images/spiderman.jpeg');">
                 </div>
             </div>
         </div>

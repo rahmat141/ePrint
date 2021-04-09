@@ -3,26 +3,16 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form" action="<?= base_url(
-                    'auth/addNewUser'
-                ) ?>" method="post">
+                <form class="login100-form validate-form" action="<?=base_url(
+    'auth/addNewUser'
+)?>" method="post">
                     <span class="login100-form-title p-b-43">
-                        Please <?= $head ?>
+                        Please <?=$head?>
                     </span>
 
-                    <?= $this->session->flashdata('pesan') ?>
+                    <?=$this->session->flashdata('pesan')?>
 
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Daftar Sebagai?</label>
-                        <select class="form-control" id="pilih" name="pilih">
-                            <option value="">--Pilih--</option>
-                            <?php foreach ($pengguna as $pg): ?>
 
-                            <option value="<?= $pg->jenis_pengguna ?>"><?= $pg->jenis_pengguna ?></option>
-
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
                     <div id="ctn">
 
 
@@ -45,6 +35,18 @@
                             <input class="input100" type="password" name="pass">
                             <span class="focus-input100"></span>
                             <span class="label-input100">Password</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Daftar Sebagai?</label>
+                            <select class="form-control" id="pilih" name="pilih">
+                                <option value="">--Pilih--</option>
+                                <?php foreach ($pengguna as $pg): ?>
+
+                                <option value="<?=$pg->jenis_pengguna?>"><?=$pg->jenis_pengguna?></option>
+
+                                <?php endforeach;?>
+                            </select>
                         </div>
 
 
@@ -71,9 +73,9 @@
                     <div class="login100-form-social flex-c-m">
 
                         <div class="container-login100-form-btn">
-                            <a href="<?= base_url(
-                                'auth/'
-                            ) ?>" class="login100-btn">
+                            <a href="<?=base_url(
+    'auth/'
+)?>" class="login100-btn">
                                 Login
                             </a>
                         </div>
@@ -83,14 +85,14 @@
                     </div>
                 </form>
 
-                <script src="<?= base_url(
-                    'assets_auth/js/'
-                ) ?>ajax.js"></script>
+                <script src="<?=base_url(
+    'assets_auth/js/'
+)?>ajax.js"></script>
 
 
-                <div class="login100-more" style="background-image: url('<?= base_url(
-                    'assets_auth/'
-                ) ?>images/spiderman.jpeg');">
+                <div class="login100-more" style="background-image: url('<?=base_url(
+    'assets_auth/'
+)?>images/spiderman.jpeg');">
                 </div>
             </div>
         </div>
