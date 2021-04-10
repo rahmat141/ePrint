@@ -99,51 +99,71 @@
 </div>
 </main>
 <!-- JS Library-->
+<script src="//code.tidio.co/8mwnjpvbd87bmtkfbmnaq8eovjzgl5ta.js" async></script>
 
 
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+    integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+    integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous">
+</script>
 
 
 
 <script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/bootstrap/dist/js/bootstrap.min.js">
 </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
+<script type="text/javascript"
+    src="<?php echo base_url(); ?>assetsKonsumen/plugins/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/owl-carousel/owl.carousel.min.js">
 </script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/gmap3.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/imagesloaded.pkgd.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/isotope.pkgd.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script type="text/javascript"
+    src="<?php echo base_url(); ?>assetsKonsumen/plugins/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/jquery.matchHeight-min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/slick/slick/slick.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/elevatezoom/jquery.elevatezoom.js">
 </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/Magnific-Popup/dist/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript"
+    src="<?php echo base_url(); ?>assetsKonsumen/plugins/Magnific-Popup/dist/jquery.magnific-popup.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/jquery-ui/jquery-ui.min.js">
 </script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx39JFH5nhxze1ZydH-Kl8xXM3OK4fvcg&amp;region=GB"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.video.min.js">
+<script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx39JFH5nhxze1ZydH-Kl8xXM3OK4fvcg&amp;region=GB"></script>
+<script type="text/javascript"
+    src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script type="text/javascript"
+    src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript"
+    src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.video.min.js">
 </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js">
+<script type="text/javascript"
+    src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js">
 </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js">
+<script type="text/javascript"
+    src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js">
 </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.navigation.min.js">
+<script type="text/javascript"
+    src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.navigation.min.js">
 </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.parallax.min.js">
+<script type="text/javascript"
+    src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.parallax.min.js">
 </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.actions.min.js">
+<script type="text/javascript"
+    src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.actions.min.js">
 </script>
 
-<script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js">
+<script type="text/javascript"
+    src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js">
 </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.migration.min.js">
+<script type="text/javascript"
+    src="<?php echo base_url(); ?>assetsKonsumen/plugins/revolution/js/extensions/revolution.extension.migration.min.js">
 </script>
 
 
@@ -152,19 +172,19 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assetsKonsumen/js/main.js"></script>
 
 <script type="text/javascript">
-    $(document).on("click", "#bukti_bayar", function() {
-        var gambar = $(this).data('foto');
+$(document).on("click", "#bukti_bayar", function() {
+    var gambar = $(this).data('foto');
 
-        $("#modal_view #image_bayar").attr('src', '<?= base_url('assets/foto/bukti_bayar/') ?>' + gambar);
+    $("#modal_view #image_bayar").attr('src', '<?=base_url('assets/foto/bukti_bayar/')?>' + gambar);
 
 
-    });
+});
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#example').DataTable();
-    });
+$(document).ready(function() {
+    $('#example').DataTable();
+});
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -175,24 +195,24 @@
 
 
 <script type="text/javascript">
-    $(document).on("click", "#seen_ukuran", function() {
-        var s = $(this).data('s');
-        var m = $(this).data('m');
-        var l = $(this).data('l');
-        var xl = $(this).data('xl');
-        var xxl = $(this).data('xxl');
-        var xxxl = $(this).data('xxxl');
-       
-
-        $("#modal_view #table #s").html(s);
-        $("#modal_view #table #m").html(m);
-        $("#modal_view #table #l").html(l);
-        $("#modal_view #table #xl").html(xl);
-        $("#modal_view #table #xxl").html(xxl);
-        $("#modal_view #table #3xl").html(xxxl);
+$(document).on("click", "#seen_ukuran", function() {
+    var s = $(this).data('s');
+    var m = $(this).data('m');
+    var l = $(this).data('l');
+    var xl = $(this).data('xl');
+    var xxl = $(this).data('xxl');
+    var xxxl = $(this).data('xxxl');
 
 
-    });
+    $("#modal_view #table #s").html(s);
+    $("#modal_view #table #m").html(m);
+    $("#modal_view #table #l").html(l);
+    $("#modal_view #table #xl").html(xl);
+    $("#modal_view #table #xxl").html(xxl);
+    $("#modal_view #table #3xl").html(xxxl);
+
+
+});
 </script>
 
 
