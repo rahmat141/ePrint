@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-//ini diubah sama fauziah rahmawati
+//ini diubah yah
 
 class Auth extends CI_Controller
 {
