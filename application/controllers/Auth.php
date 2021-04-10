@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+//vera
+
 class Auth extends CI_Controller
 {
     public function __construct()
@@ -219,7 +221,7 @@ class Auth extends CI_Controller
         ];
 
         $this->email->initialize($config);
-        $this->email->from('abizardo1123@gmail.com', 'Admin E-Print');
+        $this->email->from('admnartgraph@gmail.com', 'Admin E-Print');
         $this->email->to($this->input->post('email'));
 
         if ($type == 'verify') {
