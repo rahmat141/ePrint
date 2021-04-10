@@ -19,14 +19,14 @@ class Auth extends CI_Controller
         $this->load->view('auth/footer');
     }
 
-//     public function register()
-//     {
-//         $data['pengguna'] = $this->Auth_model->role();
-//         $data['head'] = 'Regist';
-//         $this->load->view('auth/header', $data);
-//         $this->load->view('auth/registrasi', $data);
-//         $this->load->view('auth/footer');
-//     }
+    public function register()
+    {
+        $data['pengguna'] = $this->Auth_model->role();
+        $data['head'] = 'Regist';
+        $this->load->view('auth/header', $data);
+        $this->load->view('auth/registrasi', $data);
+        $this->load->view('auth/footer');
+    }
 
     public function addNewUser()
     {
