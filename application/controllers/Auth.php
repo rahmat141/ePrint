@@ -11,6 +11,8 @@ class Auth extends CI_Controller
         $this->load->model('Auth_model');
     }
 
+    //vera fauziah
+
     public function index()
     {
         $data['head'] = 'Login';
