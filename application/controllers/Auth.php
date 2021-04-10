@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-//ini diubah sama fauziahaaa
+//vera dan fauziah test
 
 class Auth extends CI_Controller
 {
