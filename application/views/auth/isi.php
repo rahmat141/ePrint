@@ -92,7 +92,7 @@
 
                 <div class="login100-more" style="background-image: url('<?=base_url(
     'assets_auth/'
-)?>images/spiderman.jpeg');">
+)?>images/ego_apatis.JPEG');">
                 </div>
             </div>
         </div>

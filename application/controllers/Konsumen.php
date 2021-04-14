@@ -375,6 +375,24 @@ class Konsumen extends CI_Controller
         $this->load->view('templatesKonsumen/footer');
     }
 
+    public function selesaikan_pesanan($id_pesanan)
+    {
+
+        $data = [
+            'status_pesanan' => 'pesanan selesai',
+        ];
+        $this->db->update('pemesanan', $data, ['id_pesanan' => $id_pesanan]);
+
+        $this->session->set_flashdata('alert', '<div class="alert alert-success alert-dismissible show" role="alert">
+		<strong>Berhasil!</strong> Pesanan telah diselesaikan!.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>');
+
+        redirect('Konsumen/historyPemesanan');
+    }
+
     private function fileUpload()
     {
         $namaFiles = $_FILES['desain']['name'];

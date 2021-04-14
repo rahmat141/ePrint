@@ -113,7 +113,6 @@ class Konsumen_model extends CI_model
     {
         $query = "SELECT p.id_user, pb.id_bayar, sum(total_harga) as total_harga, sum(jumlah_barang) as jumlah_barang, status_pesanan, bukti_bayar from pembayaran pb JOIN pemesanan p on(pb.id_bayar = p.id_bayar) WHERE p.id_user=$id AND status_pesanan LIKE '%pending%' OR status_pesanan LIKE '%kurang%' GROUP by pb.id_bayar";
 
-
         return $this->db->query($query)->result_array();
     }
 
@@ -269,8 +268,7 @@ class Konsumen_model extends CI_model
 
     public function history_pesanan($id)
     {
-        $query = "SELECT p.id_user, pb.id_bayar, sum(total_harga) as total_harga, sum(jumlah_barang) as jumlah_barang, status_pesanan, bukti_bayar from pembayaran pb JOIN pemesanan p on(pb.id_bayar = p.id_bayar) WHERE p.id_user=$id AND status_pesanan LIKE '%selesai%' OR status_pesanan LIKE '%dibatalkan%' GROUP by pb.id_bayar";
-
+        $query = "SELECT p.id_pesanan, p.id_user, pb.id_bayar, sum(total_harga) as total_harga, sum(jumlah_barang) as jumlah_barang, status_pesanan, bukti_bayar from pembayaran pb JOIN pemesanan p on(pb.id_bayar = p.id_bayar) WHERE p.id_user=$id AND status_pesanan LIKE '%proses%' OR status_pesanan LIKE '%dibatalkan%' OR status_pesanan LIKE '%dikirim%' OR status_pesanan LIKE '%selesai%' GROUP by pb.id_bayar";
 
         return $this->db->query($query)->result_array();
     }

@@ -13,7 +13,8 @@
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                         <div class="form-row">
-                            <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                            <table id="example" class="table table-striped table-bordered dt-responsive nowrap"
+                                style="width:100%">
                                 <thead>
                                     <tr>
                                         <th scope="col">No.</th>
@@ -24,58 +25,63 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $no = 1;
-                                    foreach ($allPesanan as $pesanan) :
-                                        $hasil_rupiah = 'Rp ' . number_format($pesanan['total_harga'], 2, ',', '.');
-                                    ?>
-                                        <tr>
-                                            <th scope="row"><?= $no++ ?></th>
-                                            <td><?= $pesanan['jumlah_barang'] ?></td>
-                                            <td><?= $hasil_rupiah ?></td>
-                                            <td><?= $pesanan['status_pesanan'] ?></td>
-                                            <td>
-                                                <!-- <center>
-                                                <?php if ($pesanan['status_pesanan'] == 'belum lunas') { ?>
+$no = 1;
+foreach ($allPesanan as $pesanan):
+    $hasil_rupiah = 'Rp ' . number_format($pesanan['total_harga'], 2, ',', '.');
+    ?>
+                                    <tr>
+                                        <th scope="row"><?=$no++?></th>
+                                        <td><?=$pesanan['jumlah_barang']?></td>
+                                        <td><?=$hasil_rupiah?></td>
+                                        <td><?=$pesanan['status_pesanan']?></td>
+                                        <td>
+                                            <!-- <center>
+	                                                <?php if ($pesanan['status_pesanan'] == 'belum lunas') {?>
 
-                                                <a href="#" class="btn btn-warning">Upload Bukti Pembayaran</a>
+	                                                <a href="#" class="btn btn-warning">Upload Bukti Pembayaran</a>
 
-                                                <?php } elseif ($pesanan['status_pesanan'] == 'pesanan dikirim') { ?>
+	                                                <?php } elseif ($pesanan['status_pesanan'] == 'pesanan dikirim') {?>
 
-                                                <a href="<?= base_url('admin/toltervendor/4/') . $pesanan['id_pesanan'] ?>"
+                                                <a href="<?=base_url('admin/toltervendor/4/') . $pesanan['id_pesanan']?>"
                                                     class="btn btn-success">Terima Barang</a>
 
-                                                <?php } ?> -->
-                                                <a class="btn btn-primary" href="<?= base_url('konsumen/det_pesanan/' . $pesanan['id_bayar']) ?>">
-                                                    Detail
-                                                </a>
+                                                <?php }?> -->
+                                            <a class="btn btn-primary"
+                                                href="<?=base_url('konsumen/det_pesanan/' . $pesanan['id_bayar'])?>">
+                                                Detail
+                                            </a>
 
 
 
 
-                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="bukti_bayar" data-foto="<?= $pesanan['bukti_bayar'] ?>">
-                                                    Bukti Bayar
-                                                </button>
+                                            <button type="button" class="btn btn-success" data-toggle="modal"
+                                                data-target="#exampleModal" id="bukti_bayar"
+                                                data-foto="<?=$pesanan['bukti_bayar']?>">
+                                                Bukti Bayar
+                                            </button>
 
-                                                <?php if (substr($pesanan['status_pesanan'], 0, 6) == "kurang") : ?>
+                                            <?php if (substr($pesanan['status_pesanan'], 0, 6) == "kurang"): ?>
 
-                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#pelunasan">
-                                                        Pelunasan
+                                            <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                data-target="#pelunasan">
+                                                Pelunasan
 
-                                                    </button>
+                                            </button>
 
-                                                <?php endif; ?>
+                                            <?php endif;?>
 
-                                                <!-- <input type="text" value="<?= $pesanan['bukti_bayar'] ?>"> -->
+                                            <!-- <input type="text" value="<?=$pesanan['bukti_bayar']?>"> -->
 
 
-                                                <a href="<?= base_url('konsumen/batal_pesan/' . $pesanan['id_bayar']) ?>" class="btn btn-danger">Batalkan</a>
-                                                <!-- </center> -->
-                                            </td>
-                                        </tr>
+                                            <a href="<?=base_url('konsumen/batal_pesan/' . $pesanan['id_bayar'])?>"
+                                                class="btn btn-danger">Batalkan</a>
+                                            <!-- </center> -->
+                                        </td>
+                                    </tr>
 
 
                                     <?php endforeach;
-                                    ?>
+?>
                                 </tbody>
 
                             </table>
@@ -141,7 +147,8 @@
 
 
                 </div>
-                <div class="modal-footer">
+          
+      <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
                 </div>
