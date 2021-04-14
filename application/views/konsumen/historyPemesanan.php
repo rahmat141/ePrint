@@ -28,15 +28,15 @@ $no = 1;
 foreach ($allPesanan as $pesanan):
     $hasil_rupiah = 'Rp ' . number_format($pesanan['total_harga'], 2, ',', '.');
     ?>
-																																																																		<tr>
-																																																																			<th scope="row"><?=$no++?></th>
-																																																																			<td><?=$pesanan['nama_kategori']?></td>
-																																																																			<td><?=$pesanan['jumlah_barang']?></td>
-																																																																			<td><?=$hasil_rupiah?></td>
-																																																																			<td><?=$pesanan['status_pesanan']?></td>
-																																																																			<td><a href="" class="btn btn-primary">Cetak Invoice</a></td>
-																																																									                                    </tr>
-																																																									                                    <?php endforeach;
+																																																																			<tr>
+																																																																				<th scope="row"><?=$no++?></th>
+																																																																				<td><?=$pesanan['nama_kategori']?></td>
+																																																																				<td><?=$pesanan['jumlah_barang']?></td>
+																																																																				<td><?=$hasil_rupiah?></td>
+																																																																				<td><?=$pesanan['status_pesanan']?></td>
+																																																																				<td><a href="" class="btn btn-primary">Cetak Invoice</a></td>
+																																																										                                    </tr>
+																																																										                                    <?php endforeach;
 ?>
 								</tbody>
 
