@@ -36,11 +36,11 @@ foreach ($allPesanan as $pesanan):
                                         <td><?=$pesanan['status_pesanan']?></td>
                                         <td>
                                             <!-- <center>
-	                                                <?php if ($pesanan['status_pesanan'] == 'belum lunas') {?>
+																				                                                <?php if ($pesanan['status_pesanan'] == 'belum lunas') {?>
 
-	                                                <a href="#" class="btn btn-warning">Upload Bukti Pembayaran</a>
+																				                                                <a href="#" class="btn btn-warning">Upload Bukti Pembayaran</a>
 
-	                                                <?php } elseif ($pesanan['status_pesanan'] == 'pesanan dikirim') {?>
+																				                                                <?php } elseif ($pesanan['status_pesanan'] == 'pesanan dikirim') {?>
 
                                                 <a href="<?=base_url('admin/toltervendor/4/') . $pesanan['id_pesanan']?>"
                                                     class="btn btn-success">Terima Barang</a>
@@ -70,12 +70,21 @@ foreach ($allPesanan as $pesanan):
 
                                             <?php endif;?>
 
-                                            <!-- <input type="text" value="<?=$pesanan['bukti_bayar']?>"> -->
+                                            <?php if ($pesanan['status_pesanan'] == "pesanan dikirim"): ?>
 
+                                            <a class="btn btn-info"
+                                                href="<?=base_url('konsumen/selesaikan_pesanan/') . $pesanan['id_pesanan']?>">Selesai</a>
 
-                                            <a href="<?=base_url('konsumen/batal_pesan/' . $pesanan['id_bayar'])?>"
+                                            <?php else: ?>
+                                            <a href=" <?=base_url('konsumen/batal_pesan/' . $pesanan['id_bayar'])?>"
                                                 class="btn btn-danger">Batalkan</a>
+                                            <?php endif;?>
+
+
                                             <!-- </center> -->
+
+
+
                                         </td>
                                     </tr>
 
@@ -147,8 +156,8 @@ foreach ($allPesanan as $pesanan):
 
 
                 </div>
-          
-      <div class="modal-footer">
+
+                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
                 </div>
