@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2021 at 06:47 PM
+-- Generation Time: Apr 15, 2021 at 05:01 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -98,16 +98,15 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `gambar_kategori`) VALUES
-(1, 'TShirt', ''),
-(2, 'Almamater', ''),
-(3, 'Jaket', ''),
-(4, 'Polo', ''),
-(5, 'Hoodie', ''),
-(6, 'Kaos Lapangan', ''),
-(7, 'Jersey', ''),
-(8, 'Jas', ''),
-(63, 'Gaun', ''),
-(64, 'tshirt/kaos', '');
+(1, 'TShirt', 'tshirt.jpeg'),
+(2, 'Almamater', 'almet.jpeg'),
+(3, 'Jaket', 'jaket.jpeg'),
+(4, 'Polo', 'polo.jpeg'),
+(5, 'Hoodie', 'hoodie.jpeg'),
+(6, 'Kaos Lapangan', 'kaoslapangan.jpeg'),
+(7, 'Jersey', 'jersey.jpeg'),
+(8, 'Jas', 'jaz.jpeg'),
+(9, 'Gaun', '');
 
 -- --------------------------------------------------------
 
