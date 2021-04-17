@@ -132,7 +132,7 @@
                                         <a class="ps-shoe__favorite" href="#"><i class="ps-icon-heart"></i></a>
                                         <img src="<?=base_url(
     'assetsKonsumen/'
-)?>images/product/<?=$pst->gambar?>" alt="">
+)?>images/product/<?=$pst->gambar?>" alt="" style="width: 350px;height: 350px;object-fit: cover;">
                                         <a class="ps-shoe__overlay"
                                             href="<?=base_url('Konsumen/detail/') . $pst->id_posting?>">
                                         </a>

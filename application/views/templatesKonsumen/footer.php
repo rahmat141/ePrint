@@ -181,6 +181,17 @@ $(document).on("click", "#bukti_bayar", function() {
 });
 </script>
 
+
+<script type="text/javascript">
+$(document).on("click", "#pelunasannnnn", function() {
+    var idbayar = $(this).data('idbayar');
+
+    $("#modal_view #id_bayar").val(idbayar);
+
+
+});
+</script>
+
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable();

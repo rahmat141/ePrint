@@ -1,0 +1,61 @@
+BU OCA (PENCARI)
+1. tanggal pemesanan sebelum hari ini tidak tersedia (dimatikan (kalibrasi)) bisanya tanggal tersedia sampai hari seterusnya
+2. buat nama pemilik rekening waktu ngebooking
+3. tambah identitas nomor ktp, nomor HP di halaman booking
+4. waktu pencari mau upload bukti tf kan ada keterangan DP 20%, nah itu di tambah keterangan harga DP (jangan buat user mikir 20% itu brp)
+5. kasih keterangan pembayaran DP dalam waktu 2x 24 jam  
+6. kasih keterangan pelunasan harus lunas sebelum menghuni kos
+7. waktu melakukan pemesanan ada syarat dan ketentuan
+8. Disuruh pake opsi keranjang
+9. tampilan tombol "detail pemesanan" di ganti jadi "detail" aja (kepanjangan kata si ibu. samain juga ukuran panjangan dg tombol "batalkan" 
+10. kasih pesan peringatan : misal mau klik tombol batal nanti muncul pesan alert "apakan anda yakin ingin membatalkan" gitu
+11. Maps
+12. chat
+13. kolom search di info pembayaran di hapus aja
+14. kalo di klik foto kos sama foto kamar nanti bisa munculin banyak foto (liat liat foto, foto dlm kamar)
+
+
+BU OCA (PEMILIK)
+1. Detail transaksi di booking_pemesanan jangan nampilin data yang sudah ada di halaman sebelumnya (jangan double double) tampilin yang ga ada aja (tgl masuk,tgl keluar)
+2. setelah pemilik menerima DP harusnya pemilik ngirim kwitansi, sama kaya pelunasan juga harus ada kwitansi
+3. mengingatkan pemesan harus melunasi pelunasan
+4. kalau pencari ga bayar bayar DP dalam 2x 24 jam maka pembookingan akan hangus dan kamar yang di pesan akan dapat di
+5. notifikasi waktu di klik langsung ke halaman yang di tuju
+6. chat
+7. di pemilik tambah kolom nomor HP buat pencari
+
+
+Modul Pemilik
+
+dari bu ine :
+- ada notifiasi di pemilik kos, bahwa ada yg baru memesan/membayar kosan, jadi ga repot periksa satu-satu tempat kos. 
+tapi menu untuk memilih tempat kos tetap ada.
+- menampilkan kolom nomor telp/wa agar dapat dihubungi oleh pemilik kos, bila uang DP kurang.
+- halaman view, filter : bulan masuk.
+- data pencari kos yg sudah bayar, tolong ditambahkan data lebih banyak, perbulan mulai januari 2021-Mei 2021.
+- grafik pendapatan diganti jadi grafik garis (grafik LINE).
+
+
+dari pak wawa :
+- yg ada format mata uang pake separator (setiap 0 nya tiga titik).
+- tambahkan form pesan keterangan catatan saat menolak pesanan kos agar si pencari tau kenapa pesanan nya ditolak.
+- data penghuni kos : jika sudah hampir habis waktu masa sewa penghuni, dikasi notifikasi ke pemilik kos.
+- di halaman registrasi ganti repeat password jadi confirm password.
+- ADMIN : saat registrasi akun pemilik. misal tidak diterima gimana? harus nya ada pilihan diterima dan ditolak. 
+- PENCARI : jika tanggal tersedia kamar tanggal 5juni > jadi kalender nya tidak tersedia sebelum tgl 5 juni jd kalender nya ditutup agar tidak bisa dipilih.
+- transaksi : dropdown pilih kosan sama jenis pemesanan digabung di satu tempat (deketan). ;kata bapak nya lebih enak pake tab.
+- notifikasi setiap ada pemesanan kos, pesanan baru, pembayaran. jadi pemilik ga susah cari kosan mana yang di pesan.
+- perlu ada catatan kalo gabisa pesan kos lebih lama dari tanggal tersedia kos. (jangan dulu bayar dp sebelum pesanan) INI YANG DISKUSI DI TELFON YA BII.
+- pembatalan pesanan 2x24 jam.
+- pembayaran batas maksimal diatur di apk.
+- habis masa kontrak : (bahaya nya kalo mahasiswa lupa yg punya kos lupa, padahal orang itu lanjut.
+- rekap pendapatan. (yg sudah bayar dp gimana, yg udah pelunasan gimana).
+- kalo dia udah jadi penghuni, dan mau perpanjang gimana? di modul pemilik ada fitur perpanjang.
+
+
+CATATAN dari bu siska :
+ada aturan secara aplikasi, untuk kamar yang dibooking lebih dari 14hari belum di approve sama pemilik kos, otomatis akan batal. ada batas jumlah
+booking kamar ada saat bersamaan.
+
+CATATAN BU OCA :
+SeSSION (ga bakal bisa buka banyak localhost satu browser)

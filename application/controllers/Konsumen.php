@@ -123,6 +123,7 @@ class Konsumen extends CI_Controller
     {
         // harus ditambah disetiap method
         $id_user = $this->session->userdata('id_user');
+
         $data['jumlah_keranjang'] = $this->Konsumen_model->getCountKeranjang(
             $id_user
         );
@@ -130,9 +131,31 @@ class Konsumen extends CI_Controller
         $data['barang_keranjang'] = $this->Konsumen_model->getIsiKeranjang(
             $id_user
         );
+
+        $limit = $this->Konsumen_model->getCountCheckout($id_user);
+
+        $ctn = $limit['jml'];
+
+        // $data['barang_keranjang1'] = $this->Konsumen_model->getCheckout(
+        //     $id_user, $ctn
+        // );
         //------------------
 
-        $data['all_pesanan'] = $this->Konsumen_model->getIsiKeranjang($id_user);
+        $data_upd = [
+            'status_pesanan' => 'checkout',
+            'tanggal_checkout' => date("Y-m-d"),
+        ];
+
+        $where_upd = [
+            'status_pesanan' => 'di dalam keranjang',
+            'tanggal_checkout' => null,
+            'id_user' => $id_user,
+        ];
+
+        $this->db->update('pemesanan', $data_upd, $where_upd);
+
+        $data['all_pesanan'] = $this->Konsumen_model->getCheckout($id_user, $ctn);
+
         $this->load->view('templatesKonsumen/header', $data);
         $this->load->view('konsumen/checkout', $data);
         $this->load->view('templatesKonsumen/footer');
@@ -305,7 +328,7 @@ class Konsumen extends CI_Controller
         }
     }
 
-    public function statusPemesanan()
+    public function statusPemesanan($stat = "pending")
     {
         // harus ditambah disetiap method
         $id_user = $this->session->userdata('id_user');
@@ -330,11 +353,23 @@ class Konsumen extends CI_Controller
         $data['barang_keranjang'] = $this->Konsumen_model->getIsiKeranjang(
             $id_user
         );
-        //------------------
 
-        $pesanan['allPesanan'] = $this->Konsumen_model->getPesananbyId(
-            $id_user
-        );
+        $data['aktif_pending'] = "";
+        $data['aktif_proses'] = "";
+        $data['aktif_kirim'] = "";
+        $data['aktif_dp'] = "";
+
+        if ($stat == "pending") {
+            $data['aktif_pending'] = "active";
+        } elseif ($stat == "proses") {
+            $data['aktif_proses'] = "active";
+        } elseif ($stat == "dikirim") {
+            $data['aktif_kirim'] = "active";
+        } else {
+            $data['aktif_dp'] = "active";
+        }
+
+        $pesanan['allPesanan'] = $this->Konsumen_model->getPesananbyId($id_user, $stat);
 
         $this->load->view('templatesKonsumen/header', $data);
         $this->load->view('konsumen/statusPemesanan', $pesanan);
@@ -890,7 +925,7 @@ class Konsumen extends CI_Controller
     {
         $id_user = $this->session->userdata('id_user');
         $tanggal_bayar = time();
-        $total_bayar = $this->input->post('total_bayar');
+
         $nama_pemesan = $this->input->post('nama_pemesan');
         $email = $this->input->post('email');
         $phone = $this->input->post('phone');
@@ -902,10 +937,21 @@ class Konsumen extends CI_Controller
 
         $id_pesan_baru = explode('_', $id_pesanan);
 
+        $jenis_bayar = $this->input->post('pembayarann');
+
+        $total_bayar = $this->input->post('total_bayar');
+
+        $jml_bayar = 0;
+        if ($jenis_bayar == "dp") {
+            $jml_bayar = $total_bayar / 2;
+        } else {
+            $jml_bayar = $total_bayar;
+        }
+
         $data_bayar = [
             'id_user' => $id_user,
             'tanggal_bayar' => $tanggal_bayar,
-            'total_bayar' => $total_bayar,
+            'total_bayar' => $jml_bayar,
             'nama_pemesan' => $nama_pemesan,
             'email' => $email,
             'phone' => $phone,
@@ -916,19 +962,19 @@ class Konsumen extends CI_Controller
 
         $this->db->insert('pembayaran', $data_bayar);
 
-        $id_bayar = $this->Konsumen_model->cekIdBayarLast($id_user);
+        $id_bayar = $this->Konsumen_model->cekIdBayarLast();
 
         $data_update_pesanan = [
             'status_pesanan' => 'pending',
-            'id_bayar' => $id_bayar['hasil'],
+            'id_bayar' => $id_bayar['id_bayar'] + 1,
         ];
 
-        for ($i = 0; $i < count($id_pesan_baru); $i++) {
-            $this->Konsumen_model->update_pesanan(
-                $id_pesan_baru[$i],
-                $data_update_pesanan
-            );
-        }
+        $data_updd = [
+            'id_user' => $id_user,
+            'status_pesanan' => 'checkout',
+        ];
+
+        $this->db->update('pemesanan', $data_update_pesanan, $data_updd);
 
         $this->kirimStatusPesanan($email);
 
@@ -965,6 +1011,21 @@ class Konsumen extends CI_Controller
             echo $this->email->print_debugger();
             die();
         }
+    }
+
+    public function bayar_dp()
+    {
+
+        $data = [
+            'bukti_dp' => $this->_uploadFile(),
+        ];
+
+        $id_bayar = $this->input->post('id_bayar');
+
+        $this->db->update('pembayaran', $data, ['id_bayar' => $id_bayar]);
+
+        redirect('konsumen/statusPemesanan/proses');
+
     }
 
     private function _uploadFile()
@@ -1092,5 +1153,22 @@ class Konsumen extends CI_Controller
         ];
 
         $this->load->view('konsumen/print_invoice', $data);
+    }
+
+    public function addNilai()
+    {
+
+        $nilai = $this->input->post('nilai');
+        $nama = $this->input->post('nama');
+
+        $data = [
+            'keterangan' => $nilai,
+            'nama_pemesan' => $nama,
+        ];
+
+        $this->db->insert('feedback', $data);
+
+        redirect('Konsumen');
+
     }
 }

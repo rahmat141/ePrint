@@ -5,6 +5,25 @@
     <div class="ps-blog-grid pt-40 pb-80">
         <div class="ps-container">
 
+            <ul class="nav nav-tabs mb-5">
+                <li class="nav-item">
+                    <a class="nav-link <?=$aktif_pending?>"
+                        href="<?=base_url('Konsumen/statusPemesanan/')?>">Pending</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?=$aktif_proses?>"
+                        href="<?=base_url('Konsumen/statusPemesanan/proses')?>">Sedang Diproses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?=$aktif_kirim?>"
+                        href="<?=base_url('Konsumen/statusPemesanan/dikirim')?>">Sedang Dikirim</a>
+                </li>
+                <li class="nav-item <?=$aktif_dp?>">
+                    <a class="nav-link" href="<?=base_url('Konsumen/statusPemesanan/kurang')?>">DP</a>
+                </li>
+
+            </ul>
+
             <div class="row">
 
 
@@ -36,11 +55,11 @@ foreach ($allPesanan as $pesanan):
                                         <td><?=$pesanan['status_pesanan']?></td>
                                         <td>
                                             <!-- <center>
-																				                                                <?php if ($pesanan['status_pesanan'] == 'belum lunas') {?>
+																																																																																																			                                                <?php if ($pesanan['status_pesanan'] == 'belum lunas') {?>
 
-																				                                                <a href="#" class="btn btn-warning">Upload Bukti Pembayaran</a>
+																																																																																																			                                                <a href="#" class="btn btn-warning">Upload Bukti Pembayaran</a>
 
-																				                                                <?php } elseif ($pesanan['status_pesanan'] == 'pesanan dikirim') {?>
+																																																																																																			                                                <?php } elseif ($pesanan['status_pesanan'] == 'pesanan dikirim') {?>
 
                                                 <a href="<?=base_url('admin/toltervendor/4/') . $pesanan['id_pesanan']?>"
                                                     class="btn btn-success">Terima Barang</a>
@@ -60,10 +79,11 @@ foreach ($allPesanan as $pesanan):
                                                 Bukti Bayar
                                             </button>
 
-                                            <?php if (substr($pesanan['status_pesanan'], 0, 6) == "kurang"): ?>
+                                            <?php if ($pesanan['status_pesanan'] == "Pembayaran kurang (sedang diproses)"): ?>
 
                                             <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                data-target="#pelunasan">
+                                                data-target="#pelunasan" data-idbayar="<?=$pesanan['id_bayar']?>"
+                                                id="pelunasannnnn">
                                                 Pelunasan
 
                                             </button>
@@ -89,8 +109,7 @@ foreach ($allPesanan as $pesanan):
                                     </tr>
 
 
-                                    <?php endforeach;
-?>
+                                    <?php endforeach;?>
                                 </tbody>
 
                             </table>
@@ -141,7 +160,7 @@ foreach ($allPesanan as $pesanan):
 
     <!-- Modal Bayar Pelunasa-->
     <div class="modal fade" id="pelunasan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Pelunasan Pembayaran</h5>
@@ -149,18 +168,20 @@ foreach ($allPesanan as $pesanan):
                 </div>
                 <div class="modal-body" id="modal_view">
 
+                    <form action="<?=base_url('konsumen/bayar_dp')?>" enctype="multipart/form-data" method="POST">
 
+                        <!-- <label for="formFile" class="form-label">Default file input example</label> -->
+                        <input class="" type="file" id="formFile" name="bukti_bayar">
+                        <input type="hidden" id="id_bayar" name="id_bayar">
+                        <br>
 
-                    <!-- <label for="formFile" class="form-label">Default file input example</label> -->
-                    <input class="" type="file" id="formFile">
+                        <button type="submit" class="btn btn-primary">Kirim</button>
+
+                    </form>
 
 
                 </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                </div>
             </div>
         </div>
     </div>

@@ -13,6 +13,8 @@ class Konsumen_model extends CI_model
     {
         $this->db->select('*');
         $this->db->from('feedback');
+        $this->db->order_by('id_feedback', 'DESC');
+        $this->db->limit(5);
         return $this->db->get()->result();
     }
 
@@ -109,9 +111,38 @@ class Konsumen_model extends CI_model
         return $this->db->get()->result();
     }
 
-    public function getPesananbyId($id)
+    public function getCountCheckout($idUser)
     {
-        $query = "SELECT p.id_pesanan, p.id_user, pb.id_bayar, sum(total_harga) as total_harga, sum(jumlah_barang) as jumlah_barang, status_pesanan, bukti_bayar from pembayaran pb JOIN pemesanan p on(pb.id_bayar = p.id_bayar) WHERE p.id_user=$id AND status_pesanan LIKE '%pending%' OR status_pesanan LIKE '%kurang%' OR status_pesanan LIKE '%proses%' OR status_pesanan LIKE '%dikirim%' GROUP by pb.id_bayar";
+        $this->db->select('COUNT(id_pesanan) jml');
+        $this->db->from('pemesanan');
+        $this->db->where('id_user =', $idUser);
+        $this->db->where('status_pesanan =', 'checkout');
+        $this->db->group_by('tanggal_checkout');
+        $this->db->order_by('tanggal_checkout', 'DESC');
+        $this->db->limit(1);
+
+        return $this->db->get()->row_array();
+    }
+
+    public function getCheckout($idUser, $limit)
+    {
+        $this->db->select('*');
+        $this->db->from('pemesanan p');
+        $this->db->join('kategori k', 'p.id_kategori=k.id_kategori');
+        $this->db->where('id_user =', $idUser);
+        $this->db->where('status_pesanan =', 'checkout');
+        $this->db->order_by('tanggal_checkout', 'DESC');
+        $this->db->limit($limit);
+
+        return $this->db->get()->result();
+    }
+
+    public function getPesananbyId($id, $stat)
+    {
+
+        $query = "SELECT p.id_pesanan, p.id_user, pb.id_bayar, sum(total_harga) as total_harga, sum(jumlah_barang) as jumlah_barang, status_pesanan, bukti_bayar from pembayaran pb JOIN pemesanan p on(pb.id_bayar = p.id_bayar) WHERE p.id_user=$id AND status_pesanan LIKE '%$stat%' GROUP by pb.id_bayar ORDER BY p.id_pesanan DESC";
+
+        // $query = "SELECT p.id_pesanan, p.id_user, pb.id_bayar, sum(total_harga) as total_harga, sum(jumlah_barang) as jumlah_barang, status_pesanan, bukti_bayar from pembayaran pb JOIN pemesanan p on(pb.id_bayar = p.id_bayar) WHERE p.id_user=$id AND status_pesanan LIKE '%pending%' OR status_pesanan LIKE '%kurang%' OR status_pesanan LIKE '%proses%' OR status_pesanan LIKE '%dikirim%' GROUP by pb.id_bayar";
 
         return $this->db->query($query)->result_array();
     }
@@ -141,11 +172,11 @@ class Konsumen_model extends CI_model
         $this->db->update('pemesanan');
     }
 
-    public function cekIdBayarLast($id_user)
+    public function cekIdBayarLast()
     {
         // $query1 = "SELECT * FROM user where username='$field' or email = '$field'";
 
-        $query = "SELECT max(id_bayar)as hasil FROM `pembayaran` WHERE id_user='$id_user' GROUP BY(id_user)";
+        $query = "SELECT id_bayar FROM pemesanan order by id_bayar DESC limit 1";
 
         return $this->db->query($query)->row_array();
     }

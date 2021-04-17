@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2021 at 05:01 AM
+-- Generation Time: Apr 18, 2021 at 12:30 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -69,7 +69,7 @@ INSERT INTO `barang` (`idbarang`, `nama`, `keterangan`, `harga`, `stok`, `katego
 CREATE TABLE `feedback` (
   `id_feedback` int(11) NOT NULL,
   `nama_pemesan` varchar(250) NOT NULL,
-  `bintang` int(11) NOT NULL,
+  `bintang` int(11) DEFAULT 5,
   `keterangan` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -90,23 +90,23 @@ INSERT INTO `feedback` (`id_feedback`, `nama_pemesan`, `bintang`, `keterangan`) 
 CREATE TABLE `kategori` (
   `id_kategori` int(11) NOT NULL,
   `nama_kategori` varchar(250) NOT NULL,
-  `gambar_kategori` varchar(250) NOT NULL
+  `gambar_kategori` varchar(250) NOT NULL,
+  `list_paket` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kategori`
 --
 
-INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `gambar_kategori`) VALUES
-(1, 'TShirt', 'tshirt.jpeg'),
-(2, 'Almamater', 'almet.jpeg'),
-(3, 'Jaket', 'jaket.jpeg'),
-(4, 'Polo', 'polo.jpeg'),
-(5, 'Hoodie', 'hoodie.jpeg'),
-(6, 'Kaos Lapangan', 'kaoslapangan.jpeg'),
-(7, 'Jersey', 'jersey.jpeg'),
-(8, 'Jas', 'jaz.jpeg'),
-(9, 'Gaun', '');
+INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `gambar_kategori`, `list_paket`) VALUES
+(1, 'TShirt', 'tshirt.jpeg', ''),
+(2, 'Almamater', 'almet.jpeg', ''),
+(3, 'Jaket', 'jaket.jpeg', ''),
+(4, 'Polo', 'polo.jpeg', ''),
+(5, 'Hoodie', 'hoodie.jpeg', ''),
+(6, 'Kaos Lapangan', 'kaoslapangan.jpeg', ''),
+(7, 'Jersey', 'jersey.jpeg', ''),
+(8, 'Jas', 'jaz.jpeg', '');
 
 -- --------------------------------------------------------
 
@@ -153,7 +153,9 @@ CREATE TABLE `pembayaran` (
   `email` varchar(250) NOT NULL,
   `phone` varchar(250) NOT NULL,
   `alamat_rumah` varchar(250) NOT NULL,
+  `jenis_bayar` int(11) NOT NULL,
   `bukti_bayar` varchar(250) NOT NULL,
+  `bukti_dp` varchar(250) DEFAULT NULL,
   `notes` varchar(250) NOT NULL,
   `penilaiian` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -162,9 +164,8 @@ CREATE TABLE `pembayaran` (
 -- Dumping data for table `pembayaran`
 --
 
-INSERT INTO `pembayaran` (`id_bayar`, `id_user`, `tanggal_bayar`, `total_bayar`, `nama_pemesan`, `email`, `phone`, `alamat_rumah`, `bukti_bayar`, `notes`, `penilaiian`) VALUES
-(9, 13, '1618408273', 856000, 'Muhammad Rahman Ramadhan', 'm.abizard1123@gmail.com', '081386397855', 'Bandung', '6076f35148f77.jpg', 'nothing', 0),
-(10, 13, '1618408519', 136000, 'Abizard', 'm.abizard1123@gmail.com', '081386397855', 'Taman Sari Persada, Cluster Lotus B4/12A', '6076f4479230f.png', 'asdsadas', 0);
+INSERT INTO `pembayaran` (`id_bayar`, `id_user`, `tanggal_bayar`, `total_bayar`, `nama_pemesan`, `email`, `phone`, `alamat_rumah`, `jenis_bayar`, `bukti_bayar`, `bukti_dp`, `notes`, `penilaiian`) VALUES
+(1, 13, '1618696301', 136000, 'Vera', 'vera@gmail.com', '21321321312', 'Taman Sari Persada, Cluster Lotus B4/12A', 0, '607b586da8421.jpeg', '607b5da87870d.png', '', 0);
 
 -- --------------------------------------------------------
 
@@ -186,6 +187,7 @@ CREATE TABLE `pemesanan` (
   `harga_paket` int(11) NOT NULL,
   `total_harga` int(250) NOT NULL,
   `status_pesanan` varchar(250) NOT NULL,
+  `tanggal_checkout` date DEFAULT NULL,
   `desain_produk` varchar(250) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_bayar` int(11) NOT NULL
@@ -195,9 +197,8 @@ CREATE TABLE `pemesanan` (
 -- Dumping data for table `pemesanan`
 --
 
-INSERT INTO `pemesanan` (`id_pesanan`, `id_barang`, `id_kategori`, `ukuran_s`, `ukuran_m`, `ukuran_l`, `ukuran_xl`, `ukuran_xxl`, `ukuran_3xl`, `jumlah_barang`, `harga_paket`, `total_harga`, `status_pesanan`, `desain_produk`, `id_user`, `id_bayar`) VALUES
-(29, 0, 1, 2, 2, 2, 2, 2, 2, 12, 68000, 856000, 'pesanan dikirim', '6076f320503fb.jpg', 13, 9),
-(30, 0, 1, 2, 0, 0, 0, 0, 0, 2, 68000, 136000, 'pesanan selesai', 'tidak upload desain', 13, 10);
+INSERT INTO `pemesanan` (`id_pesanan`, `id_barang`, `id_kategori`, `ukuran_s`, `ukuran_m`, `ukuran_l`, `ukuran_xl`, `ukuran_xxl`, `ukuran_3xl`, `jumlah_barang`, `harga_paket`, `total_harga`, `status_pesanan`, `tanggal_checkout`, `desain_produk`, `id_user`, `id_bayar`) VALUES
+(1, 0, 1, 2, 0, 0, 0, 0, 0, 2, 68000, 136000, 'pesanan selesai', '2021-04-17', 'tidak upload desain', 13, 1);
 
 -- --------------------------------------------------------
 
@@ -363,7 +364,7 @@ ALTER TABLE `barang`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id_feedback` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_feedback` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -375,19 +376,19 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `pakaiian`
 --
 ALTER TABLE `pakaiian`
-  MODIFY `id_pakaiian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pakaiian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_bayar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_bayar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `postingan`

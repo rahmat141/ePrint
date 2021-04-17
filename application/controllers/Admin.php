@@ -42,7 +42,7 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    public function toltervendor($status, $id)
+    public function toltervendor($status, $id, $total_harga = null)
     {
         if ($status == 1) {
             $status = 'sedang diproses';
@@ -50,7 +50,13 @@ class Admin extends CI_Controller
                 'status_pesanan' => $status,
             ];
 
+            $data_upd = [
+                'total_bayar' => $total_harga,
+            ];
+
             $this->Admin_model->tolakatauterima($data, $id);
+            $this->db->update('pembayaran', $data_upd, ['id_bayar' => $id]);
+
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -111,7 +117,24 @@ class Admin extends CI_Controller
 		</button>
       </div>'
             );
-            redirect('konsumen/statusPemesanan');
+            redirect('admin/daftarPesanan');
+        } else {
+            $status = 'Pembayaran kurang (sedang diproses)';
+            $data = [
+                'status_pesanan' => $status,
+            ];
+
+            $this->Admin_model->tolakatauterima($data, $id);
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-success alert-dismissible fade show" role="alert">
+		Pesan sudah dikirim ke pemesan!
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+      </div>'
+            );
+            redirect('admin/daftarPesanan');
         }
     }
 
@@ -403,7 +426,6 @@ class Admin extends CI_Controller
 
     private function _uploadFile()
     {
-        
 
         $namaFiles = $_FILES['gambar']['name'];
         $ukuranFile = $_FILES['gambar']['size'];

@@ -4,13 +4,12 @@ class Admin_model extends CI_model
     public function getAdmin()
     {
         return $this->db->get_where('user', [
-                'username' => $this->session->userdata('username'),
-                'role_id' => $this->session->userdata('role_id'),
-                'id_user' => $this->session->userdata('id_user'),
-            ])
+            'username' => $this->session->userdata('username'),
+            'role_id' => $this->session->userdata('role_id'),
+            'id_user' => $this->session->userdata('id_user'),
+        ])
             ->result_array();
     }
-    
 
     public function getAllPesanan()
     {
@@ -153,8 +152,8 @@ class Admin_model extends CI_model
     {
         $query = $this->db->query(
             'CREATE TABLE ' .
-                $namaTable .
-                " (
+            $namaTable .
+            " (
 				ID int NOT NULL AUTO_INCREMENT,
 				ID_Kategori int(11),
 				kualitas varchar(255),
@@ -164,36 +163,34 @@ class Admin_model extends CI_model
     }
 
     public function grafik_penjualanTahunan()
-	{
+    {
 
-		// SELECT sum(jumlah_barang) jml_barang, from_unixtime(tanggal_bayar, '%Y/%m') tgl from pemesanan join pembayaran on pemesanan.id_bayar=pembayaran.id_bayar GROUP by from_unixtime(tanggal_bayar, '%Y/%m')
+        // SELECT sum(jumlah_barang) jml_barang, from_unixtime(tanggal_bayar, '%Y/%m') tgl from pemesanan join pembayaran on pemesanan.id_bayar=pembayaran.id_bayar GROUP by from_unixtime(tanggal_bayar, '%Y/%m')
 
-		$this->db->select('sum(jumlah_barang) jml_barang');
-		$this->db->from('pemesanan');
-		$this->db->join('pembayaran','pemesanan.id_bayar=pembayaran.id_bayar');
-		$this->db->where("from_unixtime(tanggal_bayar, '%Y') =", date('Y'));
-		$this->db->where("status_pesanan LIKE", '%selesai%');
-		$this->db->group_by("from_unixtime(tanggal_bayar, '%Y/%m')");
+        $this->db->select('sum(jumlah_barang) jml_barang');
+        $this->db->from('pemesanan');
+        $this->db->join('pembayaran', 'pemesanan.id_bayar=pembayaran.id_bayar');
+        $this->db->where("from_unixtime(tanggal_bayar, '%Y') =", date('Y'));
+        $this->db->where("status_pesanan LIKE", '%selesai%');
+        $this->db->group_by("from_unixtime(tanggal_bayar, '%Y/%m')");
 
-		return $this->db->get()->result();
-		
-		
-	}
+        return $this->db->get()->result();
 
-	public function grafik_konsumenTahunan()
-	{
+    }
 
-		// SELECT sum(jumlah_barang) jml_barang, from_unixtime(tanggal_bayar, '%Y/%m') tgl from pemesanan join pembayaran on pemesanan.id_bayar=pembayaran.id_bayar GROUP by from_unixtime(tanggal_bayar, '%Y/%m')
+    public function grafik_konsumenTahunan()
+    {
 
-		$this->db->select('count(id_user) jml_konsumen');
-		$this->db->from('user');
-		$this->db->where("status =", 1);
-		$this->db->where("substr(created_at, 7,4) =", date('Y'));
-		$this->db->group_by("substr(created_at, 4, 7)");
+        // SELECT sum(jumlah_barang) jml_barang, from_unixtime(tanggal_bayar, '%Y/%m') tgl from pemesanan join pembayaran on pemesanan.id_bayar=pembayaran.id_bayar GROUP by from_unixtime(tanggal_bayar, '%Y/%m')
 
-		return $this->db->get()->result();
-		
-		
+        $this->db->select('count(id_user) jml_konsumen');
+        $this->db->from('user');
+        $this->db->where("status =", 1);
+        $this->db->where("substr(created_at, 7,4) =", date('Y'));
+        $this->db->group_by("substr(created_at, 4, 7)");
+
+        return $this->db->get()->result();
+
     }
 
     public function allPostingan()
@@ -203,7 +200,7 @@ class Admin_model extends CI_model
         $this->db->join('kategori', 'postingan.id_kategori=kategori.id_kategori');
         return $this->db->get()->result_array();
     }
-    
+
     public function add_Postingan($data)
     {
         $this->db->insert('postingan', $data);
