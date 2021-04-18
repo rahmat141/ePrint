@@ -20,10 +20,10 @@
 
 <main class="ps-main">
     <div style="text-align: center;padding-top: 20px;">
-        <img src="<?= base_url(
-						'assetsKonsumen/'
-					) ?>images/cart-preview/shopping-cart.png" alt="" width=150>
-        <h1>Silahkan Lihat Paket <?= $nama_barang ?> Disini</h1><br>
+        <img src="<?=base_url(
+    'assetsKonsumen/'
+)?>images/cart-preview/shopping-cart.png" alt="" width=150>
+        <h1>Silahkan Lihat Paket <?=$nama_barang?> Disini</h1><br>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
             Lihat Paket
         </button>
@@ -37,36 +37,36 @@
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 
-                        <?php if ($this->session->flashdata('pesan')) : ?>
+                        <?php if ($this->session->flashdata('pesan')): ?>
 
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <?= $this->session->flashdata('pesan') ?>
+                                <?=$this->session->flashdata('pesan')?>
                             </div>
                         </div>
 
-                        <?php endif; ?>
+                        <?php endif;?>
 
                         <!--  -->
 
-                        <form method="POST" action="<?= base_url(
-														'konsumen/masukKeranjang'
-													) ?>" enctype="multipart/form-data">
-                            <input type="hidden" name="nama_barang" value="<?= $nama_barang ?>">
+                        <form method="POST" action="<?=base_url(
+    'konsumen/masukKeranjang'
+)?>" enctype="multipart/form-data">
+                            <input type="hidden" name="nama_barang" value="<?=$nama_barang?>">
 
-                            <input type="hidden" value="<?= $id_kategori ?>" name="id_kategori">
+                            <input type="hidden" value="<?=$id_kategori?>" name="id_kategori">
 
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="inputState">Pilih Paket</label>
                                     <select id="inputState" class="form-control" name="paket" id="paket" required>
-                                        <option value="no" selected>Choose...</option>
+                                        <option value="" selected>Choose...</option>
                                         <?php
-										$i = 1;
-										foreach ($barang as $item) : ?>
-                                        <option value="<?= $item->id_pakaiian ?>">Paket <?= $i++ ?></option>
+$i = 1;
+foreach ($barang as $item): ?>
+                                        <option value="<?=$item->id_pakaiian?>">Paket <?=$i++?></option>
                                         <?php endforeach;
-										?>
+?>
                                     </select>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Paket <?= $nama_barang ?></h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Paket <?=$nama_barang?></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

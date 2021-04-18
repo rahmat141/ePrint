@@ -132,10 +132,6 @@ class Konsumen extends CI_Controller
             $id_user
         );
 
-        $limit = $this->Konsumen_model->getCountCheckout($id_user);
-
-        $ctn = $limit['jml'];
-
         // $data['barang_keranjang1'] = $this->Konsumen_model->getCheckout(
         //     $id_user, $ctn
         // );
@@ -153,6 +149,10 @@ class Konsumen extends CI_Controller
         ];
 
         $this->db->update('pemesanan', $data_upd, $where_upd);
+
+        $limit = $this->Konsumen_model->getCountCheckout($id_user);
+
+        $ctn = $limit['jml'];
 
         $data['all_pesanan'] = $this->Konsumen_model->getCheckout($id_user, $ctn);
 
