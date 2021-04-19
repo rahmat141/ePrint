@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2021 at 12:30 AM
+-- Generation Time: Apr 19, 2021 at 04:46 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -160,13 +160,6 @@ CREATE TABLE `pembayaran` (
   `penilaiian` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `pembayaran`
---
-
-INSERT INTO `pembayaran` (`id_bayar`, `id_user`, `tanggal_bayar`, `total_bayar`, `nama_pemesan`, `email`, `phone`, `alamat_rumah`, `jenis_bayar`, `bukti_bayar`, `bukti_dp`, `notes`, `penilaiian`) VALUES
-(1, 13, '1618696301', 136000, 'Vera', 'vera@gmail.com', '21321321312', 'Taman Sari Persada, Cluster Lotus B4/12A', 0, '607b586da8421.jpeg', '607b5da87870d.png', '', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -192,13 +185,6 @@ CREATE TABLE `pemesanan` (
   `id_user` int(11) NOT NULL,
   `id_bayar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pemesanan`
---
-
-INSERT INTO `pemesanan` (`id_pesanan`, `id_barang`, `id_kategori`, `ukuran_s`, `ukuran_m`, `ukuran_l`, `ukuran_xl`, `ukuran_xxl`, `ukuran_3xl`, `jumlah_barang`, `harga_paket`, `total_harga`, `status_pesanan`, `tanggal_checkout`, `desain_produk`, `id_user`, `id_bayar`) VALUES
-(1, 0, 1, 2, 0, 0, 0, 0, 0, 2, 68000, 136000, 'pesanan selesai', '2021-04-17', 'tidak upload desain', 13, 1);
 
 -- --------------------------------------------------------
 
@@ -382,13 +368,13 @@ ALTER TABLE `pakaiian`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_bayar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_bayar` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `postingan`

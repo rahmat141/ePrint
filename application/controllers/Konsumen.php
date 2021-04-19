@@ -138,7 +138,7 @@ class Konsumen extends CI_Controller
         //------------------
 
         $data_upd = [
-            'status_pesanan' => 'checkout',
+
             'tanggal_checkout' => date("Y-m-d"),
         ];
 
@@ -150,11 +150,11 @@ class Konsumen extends CI_Controller
 
         $this->db->update('pemesanan', $data_upd, $where_upd);
 
-        $limit = $this->Konsumen_model->getCountCheckout($id_user);
+        // $limit = $this->Konsumen_model->getCountKeranjang($id_user);
 
-        $ctn = $limit['jml'];
+        // $ctn = $limit['jml'];
 
-        $data['all_pesanan'] = $this->Konsumen_model->getCheckout($id_user, $ctn);
+        $data['all_pesanan'] = $this->Konsumen_model->getIsiKeranjang($id_user);
 
         $this->load->view('templatesKonsumen/header', $data);
         $this->load->view('konsumen/checkout', $data);
@@ -971,7 +971,7 @@ class Konsumen extends CI_Controller
 
         $data_updd = [
             'id_user' => $id_user,
-            'status_pesanan' => 'checkout',
+            // 'status_pesanan' => 'checkout',
         ];
 
         $this->db->update('pemesanan', $data_update_pesanan, $data_updd);
@@ -989,7 +989,7 @@ class Konsumen extends CI_Controller
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_user' => 'admnartgraph@gmail.com',
-            'smtp_pass' => 'sangatrahasia121',
+            'smtp_pass' => 'SanGatRahAsIA1211;',
             'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',
