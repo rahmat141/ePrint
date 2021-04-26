@@ -216,6 +216,8 @@ class Konsumen extends CI_Controller
         );
         //------------------
 
+        $data['paket'] = $this->db->get_where('kategori', ['id_kategori' => $kategori])->row_array();
+
         $this->load->view('templatesKonsumen/header', $data);
         $this->load->view('konsumen/form_pemesanan', $data);
         $this->load->view('templatesKonsumen/footer');
