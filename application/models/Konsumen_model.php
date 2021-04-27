@@ -14,7 +14,7 @@ class Konsumen_model extends CI_model
         $this->db->select('*');
         $this->db->from('feedback');
         $this->db->order_by('id_feedback', 'DESC');
-        $this->db->limit(5);
+        // $this->db->limit(5);
         return $this->db->get()->result();
     }
 

@@ -105,7 +105,8 @@
                 <div class="container-fluid">
                     <div class="navigation__column left">
                         <div class="header__logo"><a class="ps-logo" href="<?php echo base_url(); ?>"><img
-                                    src="<?php echo base_url(); ?>assetsKonsumen/images/logo.png" alt=""></a></div>
+                                    src="https://s0.bukalapak.com/hdr/58908731/normal/LOGO%20EGOAPTISSS_scaled.jpg"
+                                    alt=""></a></div>
                     </div>
                     <div class="navigation__column center">
                         <ul class="main-menu menu">

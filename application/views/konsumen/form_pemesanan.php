@@ -23,7 +23,7 @@
         <img src="<?=base_url(
     'assetsKonsumen/'
 )?>images/cart-preview/shopping-cart.png" alt="" width=150>
-        <h1>Silahkan Lihat Paket <?=$nama_barang?> Disini</h1><br>
+        <h1>Silahkan Lihat Paket <?=$nama_barang1?> Disini</h1><br>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
             Lihat Paket
         </button>

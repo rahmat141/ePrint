@@ -59,6 +59,7 @@ class Konsumen extends CI_Controller
         //------------------
 
         $data['nilai'] = $this->Konsumen_model->getNilai();
+
         $this->load->view('templatesKonsumen/header', $data);
         $this->load->view('konsumen/index', $data);
         $this->load->view('templatesKonsumen/footer');
@@ -215,6 +216,10 @@ class Konsumen extends CI_Controller
             $id_user
         );
         //------------------
+
+        $barang = $this->db->get_where('kategori', ['id_kategori' => $kategori])->row_array();
+
+        $data['nama_barang1'] = $barang['nama_kategori'];
 
         $data['paket'] = $this->db->get_where('kategori', ['id_kategori' => $kategori])->row_array();
 
@@ -1171,6 +1176,13 @@ class Konsumen extends CI_Controller
         $this->db->insert('feedback', $data);
 
         redirect('Konsumen');
+
+    }
+
+    public function halamanBaru()
+    {
+
+        echo "Ini halaman baru";
 
     }
 }

@@ -17,6 +17,7 @@
 )?>images/cart-preview/shopping-cart.png" alt="" width=150>
         <h1>Mau pesan apa kak?</h1>
     </div>
+
     <div class="ps-blog-grid pt-40 pb-80">
         <div class="ps-container">
 
@@ -44,6 +45,9 @@ $pk->id_kategori?>">
     'konsumen/pesanBarang/'
 ) . $pk->id_kategori?>" style="text-align: center;margin-left:-15px"><?=$pk->nama_kategori?></a>
                         </div>
+                        <center>
+                            <p style="color: #6200c4;">Harga mulai dari 10.000,00 - 200.000,00</p>
+                        </center>
                     </div>
                 </div>
                 <?php endforeach;?>
@@ -65,6 +69,6 @@ $pk->id_kategori?>">
 
 
 
-            </ div>
-            </ div>
         </div>
+    </div>
+    </div>
