@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2021 at 08:20 PM
+-- Generation Time: May 02, 2021 at 10:42 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -91,22 +91,23 @@ CREATE TABLE `kategori` (
   `id_kategori` int(11) NOT NULL,
   `nama_kategori` varchar(250) NOT NULL,
   `gambar_kategori` varchar(250) NOT NULL,
-  `list_paket` varchar(250) NOT NULL
+  `list_paket` varchar(250) NOT NULL,
+  `mulai_harga` varchar(250) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kategori`
 --
 
-INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `gambar_kategori`, `list_paket`) VALUES
-(1, 'TShirt', 'tshirt.jpeg', 'paket_tshirt.jpeg'),
-(2, 'Almamater', 'almet.jpeg', 'paket_alma.jpeg'),
-(3, 'Jaket', 'jaket.jpeg', 'paket_jaket.jpeg'),
-(4, 'Polo', 'polo.jpeg', 'paket_polo.jpeg'),
-(5, 'Hoodie', 'hoodie.jpeg', 'paket_hoodie.jpeg'),
-(6, 'Kaos Lapangan', 'kaoslapangan.jpeg', 'paket_rompi.jpeg'),
-(7, 'Jersey', 'jersey.jpeg', 'paket_jersey.jpeg'),
-(8, 'Jas', 'jaz.jpeg', 'paket_alma.jpeg');
+INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `gambar_kategori`, `list_paket`, `mulai_harga`) VALUES
+(1, 'TShirt', 'tshirt.jpeg', 'tshirt.png', '125.000 - 175.000'),
+(2, 'Almamater', 'almet.jpeg', 'almamater.png', ''),
+(3, 'Jaket', 'jaket.jpeg', 'jaket.png', ''),
+(4, 'Polo', 'polo.jpeg', 'polo.png', ''),
+(5, 'Hoodie', 'hoodie.jpeg', 'hoodie.png', ''),
+(6, 'Kaos Lapangan', 'kaoslapangan.jpeg', 'rompi.png', ''),
+(7, 'Jersey', 'jersey.jpeg', 'jersey.png', ''),
+(8, 'Jas', 'jaz.jpeg', 'jas.png', '');
 
 -- --------------------------------------------------------
 
@@ -133,9 +134,9 @@ CREATE TABLE `pakaiian` (
 --
 
 INSERT INTO `pakaiian` (`id_pakaiian`, `id_kategori`, `paket`, `kelas`, `jenis_bahan`, `jenis_bordir`, `kategori_jersey`, `jenis_sablon`, `ketebalan`, `harga`, `keterangan`) VALUES
-(1, 2, 'Paket 1', 'Sultan', 'Toyobo + Cotton', 'Bordir Computer', '', '', '', 175000, 'Free Design'),
-(2, 1, 'Paket 1', 'Medium', 'Cotton Toto', '', '', 'Rubber', '20s', 68000, 'Free Design KK'),
-(3, 1, 'Paket 2', 'Medium', 'Cotton', 'Bordir HP', '', 'rubber', '20s', 60000, 'free design'),
+(1, 2, 'Paket 1 ', 'Sultan', 'Toyobo + Cotton', 'Bordir Computer', '', '', '', 175000, 'Free Design'),
+(2, 1, 'Paket 2 ', 'Medium', 'Cotton Toto', '', '', 'Rubber', '20s', 68000, 'Free Design KK'),
+(3, 1, 'Paket 3 ', 'Medium', 'Cotton', 'Bordir HP', '', 'rubber', '20s', 60000, 'free design'),
 (4, 2, 'Paket 2', 'Reguler', 'Cotton', 'Bordir', '', 'rubber', '20s', 52000, 'free design');
 
 -- --------------------------------------------------------
@@ -257,7 +258,7 @@ INSERT INTO `user` (`id_user`, `role_id`, `username`, `email`, `password`, `alam
 (2, 1, 'Farhan', 'farhando1123@gmail.com', '$2y$10$J3l2QCYtuxKJPJ3QzMW70ebsZV1UT1Q93WNP.J6z8cTurkpL8pJUy', '', '15-11-2020, 06:44:04', 1),
 (3, 5, 'desy', 'desyRahmat@gmail.com', '$2y$10$J3l2QCYtuxKJPJ3QzMW70ebsZV1UT1Q93WNP.J6z8cTurkpL8pJUy', 'Bandung Barat', '15-11-2020, 09:01:55', 1),
 (4, 2, 'vera', 'veraardianipertiwi@gmail.com', '$2y$10$Nl/u4RBc.Hfsi7KalkCs2u/Ocd9.f6plwM3QkPqCQhkvcdYH95R16', 'Bandung', '08-12-2020, 12:28:46', 1),
-(13, 2, 'ikko', 'rezadhioo9@gmail.com', '$2y$10$uv08QQNurfwpmKUm6E1jTeQ6DNJEFlrVYtIabTiLM3caA51u1QRuy', '', '11-02-2021, 06:19:18', 1);
+(13, 2, 'ikko', 'm.abizard1123@gmail.com', '$2y$10$uv08QQNurfwpmKUm6E1jTeQ6DNJEFlrVYtIabTiLM3caA51u1QRuy', '', '11-02-2021, 06:19:18', 1);
 
 -- --------------------------------------------------------
 
@@ -271,6 +272,13 @@ CREATE TABLE `user_token` (
   `token` varchar(128) NOT NULL,
   `date_created` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_token`
+--
+
+INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
+(1, 'm.abizard1123@gmail.com', 'OtxQM5uyFDW2Yx8WIofzq37CilvYkRkOuX+N1B0bCVM=', 1619500159);
 
 --
 -- Indexes for dumped tables
@@ -398,7 +406,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

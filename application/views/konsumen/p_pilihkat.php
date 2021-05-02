@@ -46,7 +46,7 @@ $pk->id_kategori?>">
 ) . $pk->id_kategori?>" style="text-align: center;margin-left:-15px"><?=$pk->nama_kategori?></a>
                         </div>
                         <center>
-                            <p style="color: #6200c4;">Harga mulai dari 10.000,00 - 200.000,00</p>
+                            <p style="color: #6200c4;">Harga mulai dari <?=$pk->mulai_harga?> ribu</p>
                         </center>
                     </div>
                 </div>
